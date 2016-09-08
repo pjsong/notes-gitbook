@@ -8,9 +8,9 @@
           * [项目结构](ch1/jekyll-structure.md)
           * [使用](ch1/jekyll-command.md)
           * [参考资源](ch1/jekyll-resource.md)
+       * [gitbook](ch1/gitbook.md)
        * [hexo.io](ch1/hexo.md)
        * [Roots](ch1/roots.md)
-       * [gitbook](ch1/gitbook.md)
    * 1.2 创作工具
       * [Markdown pad](ch1/markdownpad.md)
       * [Sublime](ch1/sublime.md)
@@ -19,7 +19,6 @@
    * 1.5 [转换工具](ch1/pandoc.md)
    * 免费资源
        * 文本文件
-          * [gitbook](ch2/gitbook.md)
           * [github](ch2/github.md)
        * 图片/视频文件
        * 网页模板

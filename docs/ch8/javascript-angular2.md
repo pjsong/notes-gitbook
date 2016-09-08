@@ -29,6 +29,11 @@ curl -sL https://deb.nodesource.com/setup_6.x -o nodesource_setup.sh
 sudo bash nodesource_setup.sh
 sudo apt-get install nodejs
 npm install npm -g
+#############  or for centos/fedora  ######################
+curl --silent --location https://rpm.nodesource.com/setup_6.x | bash -
+##### or ######
+curl --silent --location https://rpm.nodesource.com/setup_6.x -o nodesource.sh && sudo bash nodesource.sh
+yum -y install nodejs
 </pre>
 
 ###安装sublime3
