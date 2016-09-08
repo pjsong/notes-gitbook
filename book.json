@@ -1,10 +1,18 @@
 {
     "root": "./docs",
-    "plugins": ["disqus"],
+    "plugins": ["disqus", "ga"],
     "pluginsConfig": {
         "disqus": {
             "shortName": "notes-gitbook",
 			"useIdentifier": false
+        },
+        "fontsettings": {
+            "theme": "sepia",
+            "family": "sans",
+            "size": 2
+        },
+		"ga": {
+            "token": "UA-83850347-1"
         }
     }
 }
