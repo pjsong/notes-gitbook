@@ -34,6 +34,8 @@
       * win10](ch3/virtualbox-win10.md)
       * [virtualbox跑ubuntu](ch3/virtualbox-ubuntu.md)
       * [virtualbox跑android](ch3/virtualbox-android.md)
+   * [android studio](ch3/android-studio.md)
+      
    * 调试工具
       * [命令行工具](ch3/command-line.md)
       * [dev-tools](ch3/chrome-dev-tools.md)
@@ -69,6 +71,7 @@
    *  CAS [协议](https://apereo.github.io/cas/4.2.x/protocol/CAS-Protocol-Specification.html)
    * 证书资源
 * 第六章 公共服务资源
+   * [证书服务](ch6/lets-encrypt.md)
    * 服务器
      * [heroku](ch6/heroku.md)
    * 页面验证码
@@ -81,12 +84,15 @@
    * coding.net
    * [license说明](ch7/license.md)
 * 第八章 开发语言
+   * [keystonejs](ch8/keystonejs.md)
    * [php](ch8/php.md)
        1. [语言笔记](ch8/lang-php.md)
        2. [laravel框架](ch8/laravel.md)
    * [javascript](ch8/javascript.md)
      1. [tools](ch8/javascript-tools.md)
      2. [angular2](ch8/javascript-angular2.md)
+     3. [优化](ch8/optimize.md)
+     4. [typescript](ch8/typescript.md)
    * [css](ch8/css.md)
    * [java](ch8/java-summary.md)
      * [java](ch8/java.md)

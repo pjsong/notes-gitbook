@@ -5,10 +5,30 @@
 [参考pengzz.cn博客](http://www.pengzz.cn/2016/06/docker-build.html)<br>
 [参考oursmedia.net博客](http://oursmedia.net/wordpress/index.php/2016/06/03/docker-cheatsheet/)
 
+
 ---
 ## docker 更新
 [ref](https://docs.docker.com/cs-engine/upgrade/)
 $ sudo apt-get update && sudo apt-get upgrade docker-engine
+
+## run -p option
+docker run -p hostPort:containerPort
+
+## 数据卷
+
+######数据卷是容器内，绕过了UnionFS文件系统(docker使用的基于版本文件系统)一个特别设计的目录。
+创建数据圈容器：
+为节省磁盘空间，使用与容器同样的layer。比如要运行training/postgres容器
+
+1. `docker create -v /dbdata --name dbstore training/postgres /bin/true`
+2. `docker run -d --volumes-from dbstore --name db1 training/postgres`
+3. `docker run -d --volumes-from dbstore --name db2 training/postgres`
+
+参考
+
+1. [http://www.pengzz.cn/2016/06/docker-build.html](http://www.pengzz.cn/2016/06/docker-build.html)
+2. [https://docs.docker.com/engine/tutorials/dockervolumes/](https://docs.docker.com/engine/tutorials/dockervolumes/)
+
 
 ## mysql
 [参考pengzz](http://www.pengzz.cn/2016/06/mysqldatavolumndocker.html)
@@ -47,3 +67,21 @@ db.updateUser(
 )
 </pre>
 + `show dbs`,  `use dbname`, `show collections`
+
+
+##nexus
+https://github.com/sonatype/docker-nexus3
+
++ docker run -d --name nexus-data sonatype/nexus3 echo "data-only container for Nexus"
++ docker run -d -p 8091:8081 --name nexus --volumes-from nexus-data sonatype/nexus3
+
+[https://docs.npmjs.com/cli/config](https://docs.npmjs.com/cli/config)
+
+npm config set registry http://localhost:8091/repository/npmjs
+
+##Docker
+[https://docs.docker.com/engine/reference/commandline/volume_ls/](https://docs.docker.com/engine/reference/commandline/volume_ls/)
+
++ docker volume ls -f dangling=true
++ docker volume rm $(docker volume ls -qf dangling=true)
+

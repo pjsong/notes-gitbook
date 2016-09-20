@@ -151,11 +151,13 @@ enabled=1
 ###npmjs镜像
 + `npm config set registry https://r.cnpmjs.org`
 + `npm install --registry http://registry.npmjs.org`
++ npm --registry https://registry.npm.taobao.org install express
+
 
 chinese repo 
 
-+ 'https://cnpmjs.org'
-+ `http://npm.taobao.org/`
++ 说明网址'https://cnpmjs.org'
++ 说明网址`http://npm.taobao.org/`
 
 #####npm install故障 make g++ command not found
 

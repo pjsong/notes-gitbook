@@ -1,5 +1,7 @@
 # java 安装
 ---
+##JVM配置
+[http://jvm-options.tech.xebia.fr/](http://jvm-options.tech.xebia.fr/)
 
 ## centos
  [参考](http://tecadmin.net/install-java-8-on-centos-rhel-and-fedora/)
@@ -22,4 +24,32 @@ export PATH
 + ~/.mavenrc
 
 
+## 最大线程数
+[参考](http://jzhihui.iteye.com/blog/1271122)
+###代码
+<pre>
+import java.util.concurrent.atomic.AtomicInteger;
+public class TestThread extends Thread {
+	private static final AtomicInteger count = new AtomicInteger();
+	public static void main(String[] args) {
+		while (true)
+          try{
+			(new TestThread()).start();
+		  }catch(Error e){
+            System.exit(-1);
+        }
+	}
+	@Override
+	public void run() {
+		System.out.println(count.incrementAndGet());
+
+		while (true)
+			try {
+				Thread.sleep(Integer.MAX_VALUE);
+			} catch (InterruptedException e) {
+				break;
+			}
+	}
+}
+</pre>
 

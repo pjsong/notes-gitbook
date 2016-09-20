@@ -19,10 +19,15 @@
 ` /etc/gitconfig | ~/.gitconfig       | .git/config`
 </pre>
 
+###commit comment
++ [参考](http://chris.beams.io/posts/git-commit/), [git-scm](https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration)
++ 默认push匹配分支`git config --global push.default matching`
++ 添加编辑器`$ git config --global core.editor emacs`
++ 添加编辑模板文件`vi ~/.gitmessage.txt`
++ 设置使用模板文件`$ git config --global commit.template ~/.gitmessage.txt`
 
 ###代理
 + 给GIT加上代理。 全局配置文件在 `%UserHome%/.gitconfig`。
-
 > git config --global http.proxy http://loginNameOfYourLocalHost:password@localhost:yourproxyPort
 
 + 查看配置情况

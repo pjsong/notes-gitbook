@@ -6,6 +6,9 @@
 ##### [安装u盘](http://www.ubuntu.com/download/desktop/create-a-usb-stick-on-windows)
 下载该文件，在win下运行，生成可启动U盘。
 
+##### service　检查
++ `chkconfig --list | grep nexus`
+
 ###wordpress ftp更新
 + 安装提示”无法定位 WordPress 根目录”
 <pre>/**wordpress 根目录下的wp-config.php末尾添加 */
