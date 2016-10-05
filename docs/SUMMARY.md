@@ -88,6 +88,7 @@
    * [php](ch8/php.md)
        1. [语言笔记](ch8/lang-php.md)
        2. [laravel框架](ch8/laravel.md)
+   * [django](ch8/django.md)
    * [javascript](ch8/javascript.md)
      1. [tools](ch8/javascript-tools.md)
      2. [angular2](ch8/javascript-angular2.md)
