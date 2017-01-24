@@ -13,3 +13,7 @@ http://www.regular-expressions.info/anchors.html
 http://serverfault.com/questions/52034/what-is-the-difference-between-double-and-single-square-brackets-in-bash
 
 http://mywiki.wooledge.org/BashFAQ/031
+
++ 替换文件命中的空格
+
+    `find -name "* *" -type f | rename 's/ /_/g'`

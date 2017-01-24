@@ -5,6 +5,13 @@
 
 ###gitignore文件
 地址[official](https://git-scm.com/docs/gitignore)
+该文件每一行定义一个模式，对于多个文件按照优先级进行。优先级参考原文。 
+对于同一个文件中的模式，最后的那个生效。
+
+空行可以作为分隔符。
+
+1.    #注释\转义
+2.    ！重新加入
 
 ###[log](https://git-scm.com/book/en/v2/Git-Basics-Viewing-the-Commit-History)
 1. git log --pretty=oneline
@@ -106,6 +113,11 @@ store方式
 
 ---
 ###常用指令
++ clone 
+> git clone ssh://username@onboard.com/srv/git/repo
+> git clone http://username:password@onboard.com/srv/git/repo.git
+> sshpass -p password git clone ssh://username@onboard.com/srv/git/repo  (需要安装sshpass)
+
 + status
 > 工作空间没有track的路径； 索引文件和HEAD有变化的路径；索引文件和本地工作空间有变化的路径
 

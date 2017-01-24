@@ -71,6 +71,7 @@
    *  CAS [协议](https://apereo.github.io/cas/4.2.x/protocol/CAS-Protocol-Specification.html)
    * 证书资源
 * 第六章 公共服务资源
+   * [微信支付](ch6/wechatpay.md)
    * [证书服务](ch6/lets-encrypt.md)
    * 服务器
      * [heroku](ch6/heroku.md)
@@ -105,6 +106,7 @@
      * [pac4j](ch8/java-pac4j-sb-security.md)
      * [springboot](ch8/springboot.md)
      * [java key store](ch5/apereo-overlay-v5.md)
+    * [bash](ch8/bash.md)
 * 第九章 部署工具
    * [chef](ch9/chef.md)
 * 第 章 结构化数据库
