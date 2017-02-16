@@ -5,6 +5,13 @@
 主要目的是让nexus运行在80和443，适应docker等要求https的库
 ## docker-compose
 具体配置见本人dockerfiles项目， nexus3部分
+### 生成Dockers bundle
+
+###自动启动
+<pre>
+crontab -e
+@reboot /better/enter/fullpath/here/docker-compose -f /usr/bin/myapp/docker-compose.yml -p myapp start
+</pre>
 
 ## 3，去调docker client https限制的配置
 默认的--insecure-registry参数在systemd系统中不起作用。要让在systemd系统中起作用，步骤如下：[原文参考](http://developmentalmadness.com/2016/03/09/docker-configure-insecure-registry-for-systemd/)
