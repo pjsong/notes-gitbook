@@ -1,4 +1,4 @@
-# vagrant
+# angular2-starter
 [github](https://github.com/pjsong/angular2-starter)
 
 # 资源

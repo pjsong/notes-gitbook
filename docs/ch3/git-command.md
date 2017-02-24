@@ -85,6 +85,8 @@ store方式
 
 
 ####分支
++ 同步本地库到远程新创建的库
+> git remote add origin http://xx.git && git branch --set-upstream-to=origin/master && git pull && maybe conflict resolve needed && git add . &&git commit -m 'xxx' && git push 
 + 编辑当前分支并同步远程添加一个新的分支
 > git checkout -b newBranchName && git push -u origin newBranchName
 

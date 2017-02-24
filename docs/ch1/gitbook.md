@@ -1,5 +1,6 @@
 # gitbook的使用
-
+##gitbook安装
+[ref](https://github.com/GitbookIO/gitbook/blob/master/docs/setup.md)
 
 ---
 ### 使用github库管理gitbook
