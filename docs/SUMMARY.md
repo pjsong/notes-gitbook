@@ -47,12 +47,13 @@
      * [maven](ch3/build-maven.md)
    * 翻墙工具
      * [shadowsocks](ch3/shadowsocks.md)
-* 第四章 服务器软件配置
+* 第四章 服务器/中间件软件配置
    * ubuntu
      * [常用指令](ch4/ubuntu-command.md)
    * [nginx](ch4/nginx.md)
    * [docker](ch4/ubuntu-docker.md)
    * [docker-compose](ch4/docker-compose.md)
+   * [rabbitmq](ch4/rabbitmq.md)
 * 第五章 注册/登陆/CAS系统
    * 开源软件
       * [apereo](https://github.com/apereo/cas)
@@ -110,7 +111,9 @@
 * 第九章 部署工具
    * [chef](ch9/chef.md)
 * 第 章 结构化数据库
-* 第 章 半结构/文本数据库
+* 第十一章 半结构/文本数据库
+    * [Nosql](ch11/nosql.md)
+      1. [MongoDB](ch11/mongodb.md)
 * 第 章 测试工具
 
 * 第 章 监控工具

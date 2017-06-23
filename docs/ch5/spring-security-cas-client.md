@@ -1,0 +1,34 @@
+## [cas server与spring security 交互](http://docs.spring.io/spring-security/site/docs/current/reference/html/cas.html)
+
+### 步骤
++ step1
+
+访问服务程序保护页面, ExceptionTranslationFilter检测到AccessDeniedException或AuthenticationException, 去调用AuthenticationEntryPoint, 如果是cas则调用CasAuthenticationEntryPoint. CasAuthenticationEntryPoint会带上service参数, 告知回调地址.
+
++ step2
+
+cas弹出用户名/密码页. 如果有session cookie表示之前有过登录, 则直接用passwordHandler确认用户名密码是否有效. 如果成功加上ticket参数跳转到回调地址.
+
++ step3
+
+服务程序CasAuthenticationFilter一直监听回调地址, 负责处理的filter用UsernamePasswordAuthenticationToken表示得到的Token, 认证请求交回到AuthenticationManager
+
++ step4
+
+AuthenticationManager实现配置了CasAuthenticationProvider的ProviderManager, CasAuthenticationProvider用TicketValidator校验ticket再次发起cas请求.
+
++ step5
+
+cas服务器响应ticket校验请求。URL匹配成功则发出确认.服务程序中的Cas20TicketValidator解析该xml响应，返回TicketResponse给CasAuthenticationProvider
+
++ step6
+
+CasAuthenticationProvider调用配置好的CasProxyDecider指出是否接受TicketResponse中的proxy list. 再请求AuthenticationUserDetailsService加载GrantedAuthority对象.GrantedAuthority用于Assersion中的用户。
+
++ step7
+
+CasAuthenticationProvider构建一个包含TicketResponse和GrantedAuthority信息的CasAuthenticationToken。
+
++ step8
+
+控制回到CasAuthenticationFilter, 安置CasAuthenticationToken， 浏览器进入到抛出异常的地址

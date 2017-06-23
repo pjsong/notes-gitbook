@@ -1,6 +1,29 @@
 #安装
+
+##使用docker + jekyllbootstrap
+###jekyllbootstrap
+
+[ref install by jekyllbootstrap](jekyllbootstrap.com/usage/jekyll-quick-start.html)
+
+<code>
+
+git clone --depth 1 https://github.com/plusjade/jekyll-bootstrap.git
+
+cd jekyll-bootstrap/
+
+git remote set-url origin git@github.com:pjsong/vending-machine-manual.git
+
+git push -u origin master
+
+</code>
+
+### docker
+sudo docker run --rm --label jekyll \
+ -v ~/Documents/git/github/vending-machine-manual/jekyllbootstrap:/srv/jekyll \
+ -it --network omd-network-dev --ip 172.16.0.10 -p 4000:4000 jekyll/jekyll
+
 ---
-##0. 使用作者的vagrant box
+##1. 使用作者的vagrant box
 >vagrant pull pjsong/jekyll
 ##1. 还可以自己体会安装，步骤如下
 ###1.1. 在镜像安装
