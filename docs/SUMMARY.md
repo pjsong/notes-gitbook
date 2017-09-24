@@ -1,4 +1,4 @@
-# 目录
+# Summary
 
 * [前言](README.md)
 * [第一章  静态内容管理](ch1.md)
@@ -14,9 +14,9 @@
   * 1.2 创作工具
     * [Markdown pad](ch1/markdownpad.md)
     * [Sublime](ch1/sublime.md)
-  * 1.3 [Markdown句法](ch1/markdown-syntax.md)
-  * 1.4 [yaml句法](ch1/yaml-syntax.md)
-  * 1.5 [转换工具](ch1/pandoc.md)
+  * [Markdown句法](ch1/markdown-syntax.md)
+  * [yaml句法](ch1/yaml-syntax.md)
+  * [转换工具](ch1/pandoc.md)
   * 免费资源
     * 文本文件
       * [github](ch2/github.md)
@@ -25,9 +25,8 @@
 * [第二章 内容管理系统CMS](ch2.md)
   * 开源软件
     * october
-  * [表单资源](ch2/form-test.md) 
+  * [表单资源](ch2/form-test.md)
 * 第三章 开发工具
-
   * [git](ch3/git-command.md)
   * [vagrant](ch3/vagrant.md)
   * virtualbox
@@ -36,35 +35,25 @@
     * [virtualbox跑ubuntu](ch3/virtualbox-ubuntu.md)
     * [virtualbox跑android](ch3/virtualbox-android.md)
   * [android studio](ch3/android-studio.md)
-
   * 调试工具
-
     * [命令行工具](ch3/command-line.md)
     * [dev-tools](ch3/chrome-dev-tools.md)
     * [eclipse-remote-debug](ch3/eclipse-remote-debug.md)
     * [windows端口命令](ch3/windows-command.md)
     * [dns常用](ch3/dns)
-
   * 构建工具
-
     * [gradle](ch3/build-gradle.md)
     * [maven](ch3/build-maven.md)
-
   * 翻墙工具
-
     * [shadowsocks](ch3/shadowsocks.md)
-
 * 第四章 服务器/中间件软件配置
-
   * ubuntu
     * [常用指令](ch4/ubuntu-command.md)
   * [nginx](ch4/nginx.md)
   * [docker](ch4/ubuntu-docker.md)
   * [docker-compose](ch4/docker-compose.md)
   * [rabbitmq](ch4/rabbitmq.md)
-
 * 第五章 注册/登陆/CAS系统
-
   * 开源软件
     * [apereo](https://github.com/apereo/cas)
       * [官方说明翻译](https://apereo.github.io/cas/development/index.html)
@@ -79,9 +68,8 @@
     * [shibboleth](ch5/shibboleth.md)
     * [wso2](https://github.com/wso2/product-is)
     * [josso](http://www.josso.org/)
-  * CAS [协议](https://apereo.github.io/cas/4.2.x/protocol/CAS-Protocol-Specification.html)
+  * [协议](https://apereo.github.io/cas/4.2.x/protocol/CAS-Protocol-Specification.html)
   * 证书资源
-
 * 第六章 公共服务资源
   * [微信支付](ch6/wechatpay.md)
   * [证书服务](ch6/lets-encrypt.md)
@@ -99,14 +87,14 @@
 * 第八章 开发语言
   * [keystonejs](ch8/keystonejs.md)
   * [php](ch8/php.md)
-    1. [语言笔记](ch8/lang-php.md)
-    2. [laravel框架](ch8/laravel.md)
+    * [语言笔记](ch8/lang-php.md)
+    * [laravel框架](ch8/laravel.md)
   * [django](ch8/django.md)
   * [javascript](ch8/javascript.md)
-    1. [tools](ch8/javascript-tools.md)
-    2. [angular2](ch8/javascript-angular2.md)
-    3. [优化](ch8/optimize.md)
-    4. [typescript](ch8/typescript.md)
+    * [tools](ch8/javascript-tools.md)
+    * [angular2](ch8/javascript-angular2.md)
+    * [优化](ch8/optimize.md)
+    * [typescript](ch8/typescript.md)
   * [css](ch8/css.md)
   * [java](ch8/java-summary.md)
     * [java](ch8/java.md)
@@ -121,25 +109,16 @@
     * [bash](ch8/bash.md)
 * 第九章 部署工具
   * [chef](ch9/chef.md)
-* 第十章 springboot项目
-
-          + [springboot-config-server](/docs/ch10/springboot-config-server)
-
+* [第十章 springboot项目](di-shi-zhang-springboot-xiang-mu.md)
+  * [springboot-config-server](/docs/ch10/springboot-config-server)
 * 第十一章 半结构/文本数据库
-
   * [Nosql](ch11/nosql.md)
-    1. [MongoDB](ch11/mongodb.md)
-
+    * [MongoDB](ch11/mongodb.md)
 * 第 章 测试工具
-
 * 第 章 监控工具
-
 * 第 章 常见问题
-
   * WEB
     * [cookie和session](ch99/cookie-session.md)
     * [修身](ch99/lofty)
     * [点子](ch99/idea.md)
-
-
 
