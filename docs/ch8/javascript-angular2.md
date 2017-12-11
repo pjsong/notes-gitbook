@@ -36,7 +36,8 @@ curl --silent --location https://rpm.nodesource.com/setup_6.x -o nodesource.sh &
 yum -y install nodejs
 </pre>
 
-###安装sublime3
+### 安装sublime3
+
 <pre>sudo add-apt-repository ppa:webupd8team/sublime-text-2
 sudo apt-get update
 sudo apt-get install sublime-text</pre>
@@ -46,15 +47,19 @@ sudo apt-get install sublime-text</pre>
 
 ---
 # quickstart中的javascript与typescript版本对比
-###index.html
-####公共 polyfill
+
+## index.html
+
+### 公共 polyfill
+
 >
     <script src="node_modules/core-js/client/shim.min.js"></script>
     <script src="node_modules/zone.js/dist/zone.js"></script>
     <script src="node_modules/reflect-metadata/Reflect.js"></script>
 </pre></code>
 
-####javascript
+## javascript
+
 >
     <script src="node_modules/rxjs/bundles/Rx.umd.js"></script>
     <script src="node_modules/@angular/core/bundles/core.umd.js"></script>
@@ -74,10 +79,9 @@ sudo apt-get install sublime-text</pre>
       System.import('app').catch(function(err){ console.error(err); });
     </script>
 
+## main.js
 
-
-###main.js
-> 
+>
     document.addEventListener('DOMContentLoaded', function() {
       ng.platformBrowserDynamic
         .platformBrowserDynamic()
@@ -88,8 +92,8 @@ sudo apt-get install sublime-text</pre>
     import { AppModule } from './app.module';
     platformBrowserDynamic().bootstrapModule(AppModule);
 
+## module
 
-###module
 >
     app.AppModule =
       ng.core.NgModule({
@@ -111,7 +115,8 @@ sudo apt-get install sublime-text</pre>
     })
     export class AppModule { }
 
-###conponent
+## conponent
+
 >
      app.AppComponent =
      ng.core.Component({

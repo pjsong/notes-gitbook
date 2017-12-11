@@ -134,3 +134,16 @@ $ apt-cache policy docker-engine
 $ sudo apt-get update
 $ sudo apt-get install docker-engine
 $ sudo service docker status
+
+##### ubuntu
+
+参考
+[install under ubuntu https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04)
+
+[https://ropenscilabs.github.io/r-docker-tutorial/04-Dockerhub.html](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04)
+
+    docker save verse_gapminder > verse_gapminder.tar
+    docker load --input verse_gapminder.tar
+
+##### steps remove sudo
+    sudo usermod -aG docker username

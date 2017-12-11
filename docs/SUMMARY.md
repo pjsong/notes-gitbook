@@ -11,6 +11,7 @@
     * [gitbook](ch1/gitbook.md)
     * [hexo.io](ch1/hexo.md)
     * [Roots](ch1/roots.md)
+    * [ghost](ch1/ghost.md)
   * 1.2 创作工具
     * [Markdown pad](ch1/markdownpad.md)
     * [Sublime](ch1/sublime.md)
