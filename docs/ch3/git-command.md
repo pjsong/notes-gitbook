@@ -1,24 +1,25 @@
 # GIT 指令备忘
-# 
 
-[参考oursmedia.net](http://oursmedia.net/wordpress/index.php/2015/12/14/git-cheetsheet/)
+## gitignore文件
 
-###gitignore文件
 地址[official](https://git-scm.com/docs/gitignore)
-该文件每一行定义一个模式，对于多个文件按照优先级进行。优先级参考原文。 
+该文件每一行定义一个模式，对于多个文件按照优先级进行。优先级参考原文。
 对于同一个文件中的模式，最后的那个生效。
-
 空行可以作为分隔符。
 
-1.    #注释\转义
-2.    ！重新加入
+1.#注释\转义
+2.！重新加入
 
-###[log](https://git-scm.com/book/en/v2/Git-Basics-Viewing-the-Commit-History)
-1. git log --pretty=oneline
-2. git log --pretty=format:"%h - %an, %ar : %s"
+## [log]
 
-### git 配置
-+ 配置scope:
+<https://git-scm.com/book/en/v2/Git-Basics-Viewing-the-Commit-History>
+
+1.git log --pretty=oneline
+2.git log --pretty=format:"%h - %an, %ar : %s"
+
+## git 配置
+
++配置scope:
 <pre>
 `---------------------------------------------------`
 ` 系统           | 用户/全局/global    | 库(本地/local)`  
@@ -26,14 +27,16 @@
 ` /etc/gitconfig | ~/.gitconfig       | .git/config`
 </pre>
 
-###commit comment
-+ [参考](http://chris.beams.io/posts/git-commit/), [git-scm](https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration)
-+ 默认push匹配分支`git config --global push.default matching`
-+ 添加编辑器`$ git config --global core.editor emacs`
-+ 添加编辑模板文件`vi ~/.gitmessage.txt`
-+ 设置使用模板文件`$ git config --global commit.template ~/.gitmessage.txt`
+## commit comment
 
-###代理
++[参考](http://chris.beams.io/posts/git-commit/), [git-scm](https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration)
++默认push匹配分支`git config --global push.default matching`
++添加编辑器`$ git config --global core.editor emacs`
++添加编辑模板文件`vi ~/.gitmessage.txt`
++设置使用模板文件`$ git config --global commit.template ~/.gitmessage.txt`
+
+## 代理
+
 + 给GIT加上代理。 全局配置文件在 `%UserHome%/.gitconfig`。
 > git config --global http.proxy http://loginNameOfYourLocalHost:password@localhost:yourproxyPort
 
@@ -56,14 +59,18 @@
 store方式
 > git config credential.helper yourStoreName
 
-####任务
+### 任务
+
 [stackoverflow](http://stackoverflow.com/questions/4114095/how-to-revert-git-repository-to-a-previous-commit)
-######从最初的提交添加分支
+
+#### 从最初的提交添加分支
+
 > git checkout 0d1d7fc32
 
 > git checkout -b old-state 0d1d7fc32
 
-####远程
+#### 远程
+
 + list远程名reference
 > git remote -v
 
@@ -83,10 +90,12 @@ store方式
 + merge upstream/master
 + push origin
 
+#### 分支
 
-####分支
-+ 同步本地库到远程新创建的库
++同步本地库到远程新创建的库
+
 > git remote add origin http://xx.git && git branch --set-upstream-to=origin/master && git pull && maybe conflict resolve needed && git add . &&git commit -m 'xxx' && git push 
+
 + 编辑当前分支并同步远程添加一个新的分支
 > git checkout -b newBranchName && git push -u origin newBranchName
 

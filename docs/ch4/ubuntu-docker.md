@@ -6,25 +6,33 @@
 [参考oursmedia.net博客](http://oursmedia.net/wordpress/index.php/2016/06/03/docker-cheatsheet/)
 [admin](https://docs.docker.com/engine/admin)
 
----
 ## docker 更新
+
 [ref](https://docs.docker.com/cs-engine/upgrade/)
 $ sudo apt-get update && sudo apt-get upgrade docker-engine
 
 ## run -p option
+
 docker run -p hostPort:containerPort
 
-##[网络](https://docs.docker.com/engine/userguide/networking/)
-###网络类型
+## [网络](https://docs.docker.com/engine/userguide/networking/)
+
+### 网络类型
+
 docker安装时会创建三个网络`docker network ls`， 
 
-命令有 `ls create inspect rm connect disconnect `
+命令有 `ls create inspect rm connect disconnect`
 
 + bridge
+
 缺省情况Docker daemon链接容器到bridge也就是docker0网络。
+
 + none
+
 容器没有网络接口。
+
 + host
+
 容器内网络配置与host相同
 
 除了bridge， 这些网络基本不需交互。 
@@ -32,11 +40,12 @@ docker安装时会创建三个网络`docker network ls`，
 
 一个容器可以链接到多个网络，容器之间只能在一个网络内连接。
 
-+  创建桥接网络。
-  +  与缺省类似，有功能新增，去掉了旧功能。`docker network create --driver bridge --subnet 192.168.0.0/16 isolated_nw`
-  +  link不再有效，通过expose暴露端口给外部网络。
-  +  容器运行时通过 --network=isolated_nw添加到网络。
-+  overlay
++ 创建桥接网络。
+
+  + 与缺省类似，有功能新增，去掉了旧功能。`docker network create --driver bridge --subnet 192.168.0.0/16 isolated_nw`
+  + link不再有效，通过expose暴露端口给外部网络。
+  + 容器运行时通过 --network=isolated_nw添加到网络。
++ overlay
   + 支持大点规模的网络。docker engine要工作在swarm模式下， 或者有外部key-value store支持。
 + 定制网络插件，与docker daemon并行运行
 
@@ -82,24 +91,24 @@ network-alias 是容器为网络提供服务的参数。比如一个容器在不
 
 `ping -w 4 app`
 
-
 ## 数据卷
 
-######数据卷是容器内，绕过了UnionFS文件系统(docker使用的基于版本文件系统)一个特别设计的目录。
+### 数据卷是容器内，绕过了UnionFS文件系统(docker使用的基于版本文件系统)一个特别设计的目录。
+
 创建数据圈容器：
 为节省磁盘空间，使用与容器同样的layer。比如要运行training/postgres容器
 
-1. `docker create -v /dbdata --name dbstore training/postgres /bin/true`
-2. `docker run -d --volumes-from dbstore --name db1 training/postgres`
-3. `docker run -d --volumes-from dbstore --name db2 training/postgres`
+1.`docker create -v /dbdata --name dbstore training/postgres /bin/true`
+2.`docker run -d --volumes-from dbstore --name db1 training/postgres`
+3.`docker run -d --volumes-from dbstore --name db2 training/postgres`
 
 参考
 
-1. [http://www.pengzz.cn/2016/06/docker-build.html](http://www.pengzz.cn/2016/06/docker-build.html)
-2. [https://docs.docker.com/engine/tutorials/dockervolumes/](https://docs.docker.com/engine/tutorials/dockervolumes/)
-
+1.[http://www.pengzz.cn/2016/06/docker-build.html](http://www.pengzz.cn/2016/06/docker-build.html)
+2.[https://docs.docker.com/engine/tutorials/dockervolumes/](https://docs.docker.com/engine/tutorials/dockervolumes/)
 
 ## mysql
+
 [参考pengzz](http://www.pengzz.cn/2016/06/mysqldatavolumndocker.html)
 
 + docker run --name cas-mysql -e MYSQL_ROOT_PASSWORD=mypassword -d --restart unless-stopped mysql:latest 
@@ -108,8 +117,8 @@ network-alias 是容器为网络提供服务的参数。比如一个容器在不
 + docker inspect some-mysql
 + docker run --link cas-mysql:mysql --rm mysql sh -c 'exec mysql -h "ip.from.inspect.withquote OR container-name" -P "3306" -uroot -p' 
 
----
 ## mongodb
+
 [参考docker](https://hub.docker.com/_/mongo/)<br>
 [参考github](https://github.com/docker-library/mongo)
 
@@ -135,10 +144,11 @@ db.updateUser(
     writeConcern: { &lt;write concern> }
 )
 </pre>
+
 + `show dbs`,  `use dbname`, `show collections`
 
+## nexus
 
-##nexus
 https://github.com/sonatype/docker-nexus3
 
 + docker run -d --name nexus-data sonatype/nexus3 echo "data-only container for Nexus"
@@ -148,9 +158,9 @@ https://github.com/sonatype/docker-nexus3
 
 npm config set registry http://localhost:8091/repository/npmjs
 
-##Docker
+## Docker
+
 [https://docs.docker.com/engine/reference/commandline/volume_ls/](https://docs.docker.com/engine/reference/commandline/volume_ls/)
 
 + docker volume ls -f dangling=true
 + docker volume rm $(docker volume ls -qf dangling=true)
-

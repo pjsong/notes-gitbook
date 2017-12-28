@@ -4,11 +4,8 @@
 * [第一章  静态内容管理](ch1.md)
   * [1.1 开源软件](ch1/static-content-management.md)
     * [Jekyll](ch1/jekyll.md)
-      * [安装](ch1/jekyll-install.md)
-      * [项目结构](ch1/jekyll-structure.md)
-      * [使用](ch1/jekyll-command.md)
-      * [参考资源](ch1/jekyll-resource.md)
     * [gitbook](ch1/gitbook.md)
+    * [keystonejs](ch1/keystonejs.md)
     * [hexo.io](ch1/hexo.md)
     * [Roots](ch1/roots.md)
     * [ghost](ch1/ghost.md)
@@ -53,6 +50,8 @@
   * [nginx](ch4/nginx.md)
   * [docker](ch4/ubuntu-docker.md)
   * [docker-compose](ch4/docker-compose.md)
+  * [docker-swarm-concept](ch4/docker-swarm-concept.md)
+  * [docker-swarm-getstarted](ch4/docker-swarm-getstarted.md)
   * [rabbitmq](ch4/rabbitmq.md)
 * 第五章 注册/登陆/CAS系统
   * 开源软件

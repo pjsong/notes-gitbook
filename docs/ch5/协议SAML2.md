@@ -1,8 +1,12 @@
-## SAML2
+# SAML2
+
 [参考](https://en.wikipedia.org/wiki/SAML_2.0)
 
 + Assertion围绕一个Subject, 由statement组成，规范定义的三种Statement: `Authentication`,`Attribute`,`Authorization decision`
-+ 重要的Assertion类型`bearer`用于sso，如一下idp(identity provider)发送给sp(service provider)的Assertion:<pre><saml:Assertion
++ 重要的Assertion类型`bearer`用于sso，如一下idp(identity provider)发送给sp(service provider)的Assertion:
+
+```xml
+<saml:Assertion
    xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
    xmlns:xs="http://www.w3.org/2001/XMLSchema"
    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -54,15 +58,17 @@
          xsi:type="xs:string">staff</saml:AttributeValue>
      </saml:Attribute>
    </saml:AttributeStatement>
- </saml:Assertion></pre>
+ </saml:Assertion>
+```
+
 其中，五个关键元素
 
-  + `<saml:Issuer>` idp的id
-  + `<ds:Signature>` Assertion签名
-  + `<saml:Subject>` 已认证的principle
-  + `<saml:Conditions>` Assertion生效的条件
-  + `<saml:AuthnStatement>` idp认证动作描述
-  + `<saml:AttributeStatement>` principle关联的多值属性
++ `<saml:Issuer>` idp的id
++ `<ds:Signature>` Assertion签名
++ `<saml:Subject>` 已认证的principle
++ `<saml:Conditions>` Assertion生效的条件
++ `<saml:AuthnStatement>` idp认证动作描述
++ `<saml:AttributeStatement>` principle关联的多值属性
 
 assertion封装的信息：Assertion `(b07b804c-7c29-ea16-7300-4f3d6f7928ac)` 在时间`2004-12-05T09:22:05Z` 由idp`(https://idp.example.org/SAML2)` 针对subject `(3f7b3dcf-1674-4ecd-92c8-1544f346baf8)` 独家发放给sp`(https://sp.example.com/SAML2)`.
 
@@ -70,10 +76,15 @@ authentication封装的信息： `<saml:Subject>`中指定的principle在时间`
 
 attribute封装信息：`<saml:Subject>`中指定的principle是学院的staff member。
 
-##协议
-#####AuRP(Authentication Request Protocal)
+## 协议
+
+### AuRP(Authentication Request Protocal)
+
 SAML1.1中SSO Profile由idp发起，2.0中，由sp发送认证请求发起。ARP成为SAML2.0的新功能。
-当principle(sp)希望获得包含authentication statement的assertion，发送请求<pre><samlp:AuthnRequest
+当principle(sp)希望获得包含authentication statement的assertion，发送请求
+
+```xml
+<samlp:AuthnRequest
     xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
     xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
     ID="aaf23196-1773-2113-474a-fe114412ab72"
@@ -85,12 +96,17 @@ SAML1.1中SSO Profile由idp发起，2.0中，由sp发送认证请求发起。ARP
     <samlp:NameIDPolicy
       AllowCreate="true"
       Format="urn:oasis:names:tc:SAML:2.0:nameid-format:transient"/>
-  </samlp:AuthnRequest></pre>
+  </samlp:AuthnRequest>
+```
 
 通过浏览器给idp，idp认证后返回响应。
 
-#####ArRP(Artifact Resolution Protocal)
-SAML消息要不传值，要不传引用，就是Artifact。传Artifact的话，接收方发送请求给sp,解析Artifact<pre>  `<samlp:ArtifactResolve
+### ArRP(Artifact Resolution Protocal)
+
+SAML消息要不传值，要不传引用，就是Artifact。传Artifact的话，接收方发送请求给sp,解析Artifact
+
+```xml
+<samlp:ArtifactResolve
     xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
     xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
     ID="_cce4ee769ed970b501d680f697989d14"
@@ -101,38 +117,60 @@ SAML消息要不传值，要不传引用，就是Artifact。传Artifact的话，
     <ds:Signature
       xmlns:ds="http://www.w3.org/2000/09/xmldsig#">...</ds:Signature>
     <samlp:Artifact>AAQAAMh48/1oXIM+sDo7Dh2qMp1HM4IF5DaRNmDj6RdUmllwn9jJHyEgIi8=</samlp:Artifact>
-  </samlp:ArtifactResolve>`</pre>
-接下来sp响应返回相应的saml元素。 <br>这个协议形成HTTP Artifact Binding的基础。
+  </samlp:ArtifactResolve>
+```
 
+接下来sp响应返回相应的saml元素。
 
-#####HTTP Artifact Binding
+这个协议形成HTTP Artifact Binding的基础。
+
+### HTTP Artifact Binding
+
 最多的是Redirect binding和POST binding, 比如sp用redirect发送请求，idp用post返回相应。
 
-+ HTTP Redirect Binding。因为url长度有限，常常用来做一些短消息如`<samlp:AuthnRequest>`的绑定。长的就用POST。<pre>`https://idp.example.org/SAML2/SSO/Redirect?SAMLRequest=fZFfa8IwFMXfBb9DyXvaJtZ1BqsURRC2
++ HTTP Redirect Binding。因为url长度有限，常常用来做一些短消息如`<samlp:AuthnRequest>`的绑定。长的就用POST。
+
+如`https://idp.example.org/SAML2/SSO/Redirect?SAMLRequest=fZFfa8IwFMXfBb9DyXvaJtZ1BqsURRC2
  Mabbw95ivc5Am3TJrXPffmmLY3%2FA15Pzuyf33On8XJXBCaxTRmeEhTEJQBdmr%2FRbRp63K3pL5rPhYOpkVdY
  ib%2FCon%2BC9AYfDQRB4WDvRvWWksVoY6ZQTWlbgBBZik9%2FfCR7GorYGTWFK8pu6DknnwKL%2FWEetlxmR8s
  BHbHJDWZqOKGdsRJM0kfQAjCUJ43KX8s78ctnIz%2Blp5xpYa4dSo1fjOKGM03i8jSeCMzGevHa2%2FBK5MNo1F
  dgN2JMqPLmHc0b6WTmiVbsGoTf5qv66Zq2t60x0wXZ2RKydiCJXh3CWVV1CWJgqanfl0%2Bin8xutxYOvZL18NK
- UqPlvZR5el%2BVhYkAgZQdsA6fWVsZXE63W2itrTQ2cVaKV2CjSSqL1v9P%2FAXv4C`</pre>
+ UqPlvZR5el%2BVhYkAgZQdsA6fWVsZXE63W2itrTQ2cVaKV2CjSSqL1v9P%2FAXv4C`
 
-+ HTTP Post Binding. sp和idp都能用。比如sp发送给浏览器表单<pre> `<form method="post" action="https://idp.example.org/SAML2/SSO/POST" ...>
++ HTTP Post Binding. sp和idp都能用。比如sp发送给浏览器表单
+
+```html
+<form method="post" action="https://idp.example.org/SAML2/SSO/POST" ...>
     <input type="hidden" name="SAMLRequest" value="''request''" />
     ... other input parameter....
-  </form>`</pre>
-SAMLRequest的值是一个Base64编码的`<samlp:AuthnRequest>`元素，通过浏览器发送给idp,idp返回<pre>`<form method="post" action="https://sp.example.com/SAML2/SSO/POST" ...>
+  </form>
+```
+
+SAMLRequest的值是一个Base64编码的
+`<samlp:AuthnRequest>`
+元素，通过浏览器发送给idp,idp返回
+
+```html
+<form method="post" action="https://sp.example.com/SAML2/SSO/POST" ...>
     <input type="hidden" name="SAMLResponse" value="''response''" />
     ...
-  </form>`</pre>
+  </form>
+```
 
 + HTTP Artifact Binding. (略)
 
-##SSO用例
+## SSO用例
+
 包含ua(user agent),sp, idp. sp可以有四种绑定方式，idp三种。假定sp用redirect， idp用post，过程是
 
 ![参考图](https://upload.wikimedia.org/wikipedia/en/3/38/Saml2-browser-sso-post.gif)
 
-1. https://sp.example.com/myresource
-2. 响应<pre>` <form method="post" action="https://idp.example.org/SAML2/SSO/POST" ...>
+1.<https://sp.example.com/myresource>
+
+2.响应
+
+```html
+ <form method="post" action="https://idp.example.org/SAML2/SSO/POST" ...>
     <input type="hidden" name="SAMLRequest" value="request" />
     <input type="hidden" name="RelayState" value="token" />
     ...
@@ -148,55 +186,77 @@ SAMLRequest的值是一个Base64编码的`<samlp:AuthnRequest>`元素，通过�
     <samlp:NameIDPolicy
       AllowCreate="true"
       Format="urn:oasis:names:tc:SAML:2.0:nameid-format:transient"/>
-  </samlp:AuthnRequest>`</pre>的base64编码。
+  </samlp:AuthnRequest>
+```
 
-3. 浏览器请求<pre>`POST /SAML2/SSO/POST HTTP/1.1
+  base64编码。
+
+3.浏览器请求
+
+```yaml
+POST /SAML2/SSO/POST HTTP/1.1
 Host: idp.example.org
 Content-Type: application/x-www-form-urlencoded
 Content-Length: nnn
-SAMLRequest=request&RelayState=token`</pre>
+SAMLRequest=request&RelayState=token
+```
 
-4. idp响应<pre>`<form method="post" action="https://sp.example.com/SAML2/SSO/POST" ...>
+4.idp响应
+
+```html
+<form method="post" action="https://sp.example.com/SAML2/SSO/POST" ...>
     <input type="hidden" name="SAMLResponse" value="response" />
     <input type="hidden" name="RelayState" value="token" />
     ...
     <input type="submit" value="Submit" />
-  </form>`</pre>SAMLResponse参数的值也是message的base64编码
+  </form>`
+```
 
-5. 请求sp<pre>`POST /SAML2/SSO/POST HTTP/1.1
+SAMLResponse参数的值也是message的base64编码
+
+5.请求sp
+
+```yaml
+POST /SAML2/SSO/POST HTTP/1.1
 Host: sp.example.com
 Content-Type: application/x-www-form-urlencoded
 Content-Length: nnn
 SAMLResponse=response&RelayState=token
-`</pre>
+```
 
-6. sp创建securitycontext, 重定向到resource
-7. `https://sp.example.com/myresource`
+6.sp创建securitycontext, 重定向到resource
 
+7.`https://sp.example.com/myresource`
 
-#####两个都用redirect
+### 两个都用redirect
+
 ![](https://upload.wikimedia.org/wikipedia/en/5/54/Saml2-browser-sso-artifact.gif)
 
-###idpd， idp发现协议
-1. Common Domain
-2. Common Domain Cookie
-3. Common Domain Cookie Writing Service
-4. Common Domain Cookie Reading Service
+### idp发现协议
+
+1.Common Domain
+2.Common Domain Cookie
+3.Common Domain Cookie Writing Service
+4.Common Domain Cookie Reading Service
 
 比如：`example.co.uk`和`example.de`都属于`example.com`, 那么`example.com`就是一个Common Domain， 其他都是子域名如`uk.example.com`,`de.example.com`
 
 那 Common Domain Cookie就存储最近访问的idp。认证成功，idp请求一个Common Domain Cookie Writing Service，这个service把idp唯一标识写入cookie，sp当收到没有认证请求，发送Common Domain Cookie Reading Service请求来获得最近使用的idp。
 
-###Assertion 查询/请求协议
+### Assertion 查询/请求协议
+
 常常与soap一起使用
 
-1. `<samlp:AssertionIDRequest>` 根据id请求Assertion。
-2. `<samlp:SubjectQuery>` 定义新的基于subject的SAML查询。
-3. `<samlp:AuthnQuery>` 根据给定的subject请求authentication assertions
-4. `<samlp:AttributeQuery>` 根据给定的subject请求idp的 attributes
-5. `<samlp:AuthzDecisionQuery>` 从信任的第三方请求authorization decision
+1.`<samlp:AssertionIDRequest>` 根据id请求Assertion。
+2.`<samlp:SubjectQuery>` 定义新的基于subject的SAML查询。
+3.`<samlp:AuthnQuery>` 根据给定的subject请求authentication assertions
+4.`<samlp:AttributeQuery>` 根据给定的subject请求idp的 attributes
+5.`<samlp:AuthzDecisionQuery>` 从信任的第三方请求authorization decision
 
-attribute query<pre>`  <samlp:AttributeQuery
+attribute query
+
+```xml
+<samlp:AttributeQuery
     xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
     xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
     ID="aaf23196-1773-2113-474a-fe114412ab72"
@@ -222,16 +282,20 @@ attribute query<pre>`  <samlp:AttributeQuery
       Name="urn:oid:1.3.6.1.4.1.1466.115.121.1.26"
       FriendlyName="mail">
     </saml:Attribute>
-  </samlp:AttributeQuery>`</pre>
+  </samlp:AttributeQuery>
+```
 
+## SAML Metadata
 
-##SAML Metadata
 + idp接受sp的`<samlp:AuthnRequest>`之后，怎么知道sp是真的。他要看metadata中信任的sp列表。
 + idp怎么知道认证响应后，把用户重定向到哪里。idp看metadata中sp预先安排的endpoint地址
 + sp怎么知道返回来自于真正的idp。sp用metadata中的idp公钥检查assertion签名
 + sp怎么知道找谁解析idp提供的artifact。sp查找metadata预先定义的idp artifact解析服务地址。
 
-idp发布自己的metadata<pre>`<md:EntityDescriptor
+idp发布自己的metadata
+
+```xml
+<md:EntityDescriptor
     xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata"
     xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
     xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
@@ -254,9 +318,13 @@ idp发布自己的metadata<pre>`<md:EntityDescriptor
       <md:SurName>SAML IdP Support</md:SurName>
       <md:EmailAddress>mailto:saml-support@idp.example.org</md:EmailAddress>
     </md:ContactPerson>
-  </md:EntityDescriptor>`</pre>
+  </md:EntityDescriptor>
+```
 
-idp管理sso服务metadata<pre>`  <md:IDPSSODescriptor
+idp管理sso服务metadata
+
+```xml
+ <md:IDPSSODescriptor
     protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
     <md:KeyDescriptor use="signing">
       <ds:KeyInfo>
@@ -288,9 +356,13 @@ idp管理sso服务metadata<pre>`  <md:IDPSSODescriptor
       <saml:AttributeValue>employee</saml:AttributeValue>
       <saml:AttributeValue>staff</saml:AttributeValue>
     </saml:Attribute>
-  </md:IDPSSODescriptor>`</pre>
+  </md:IDPSSODescriptor>
+```
 
-sp的metadata<pre>` <md:EntityDescriptor
+sp的metadata
+
+```xml
+<md:EntityDescriptor
     xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata"
     xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
     xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
@@ -312,9 +384,13 @@ sp的metadata<pre>` <md:EntityDescriptor
       <md:SurName>SAML SP Support</md:SurName>
       <md:EmailAddress>mailto:saml-support@sp.example.com</md:EmailAddress>
     </md:ContactPerson>
-  </md:EntityDescriptor>`</pre>
+  </md:EntityDescriptor>
+```
 
-sp主要的服务组件assertion consumer service <pre>`  <md:SPSSODescriptor
+sp主要的服务组件assertion consumer service 
+
+```xml
+<md:SPSSODescriptor
     protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
     <md:KeyDescriptor use="signing">
       <ds:KeyInfo>
@@ -346,4 +422,5 @@ sp主要的服务组件assertion consumer service <pre>`  <md:SPSSODescriptor
         FriendlyName="eduPersonAffiliation">
       </md:RequestedAttribute>
     </md:AttributeConsumingService>
-  </md:SPSSODescriptor>`</pre>
+  </md:SPSSODescriptor>
+```

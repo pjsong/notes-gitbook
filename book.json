@@ -1,6 +1,6 @@
 {
     "root": "./docs",
-    "plugins": ["disqus", "ga"],
+    "plugins": ["disqus", "ga", "scripts"],
     "pluginsConfig": {
         "disqus": {
             "shortName": "notes-gitbook",
@@ -13,6 +13,11 @@
         },
 		"ga": {
             "token": "UA-83850347-1"
+        },
+        "scripts": {
+            "files": [
+                "./js/emptyscript.js"
+            ]
         }
     }
 }

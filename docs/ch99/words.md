@@ -12,7 +12,7 @@ https://www.youtube.com/watch?v=IUHPiofOu2g
 + larynx 喉
 + bifurcation 分支
 + eustachian tube 咽鼓管
-+ pharyngeal tonsil 咽部扁桃体 
++ pharyngeal tonsil 咽部扁桃体
 + palatine tonsil 腭扁桃体
 + vestibule 前厅
 + cartilaginous 软骨

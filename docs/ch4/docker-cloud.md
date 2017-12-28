@@ -1,10 +1,13 @@
-# Docker-Machine
+# [Docker-Cloud](https://docs.docker.com/docker-cloud/)
 
 ## 作用
 
-+ 在mac和windows安装docker
-+ 提供/管理多个docker远程主机
-+ 提供swarm集群
++ 为容器应用镜像提供包括构建/测试便利的注册服务。
++ 为主机管理/安装提供工具
++ 从镜像创建应用的自动化部署
+
+
+Docker Cloud provides a hosted registry service with build and testing facilities for Dockerized application images; tools to help you set up and manage host infrastructure; and application lifecycle features to automate deploying (and redeploying) services created from images.
 
 ## 概念
 
@@ -35,7 +38,7 @@ docker-machine version
 docker-machine ls
 ```
 
-### [创建本地虚拟主机](https://docs.docker.com/machine/get-started/)
+### [创建](https://docs.docker.com/machine/get-started/)
 
 `docker-machine create --driver virtualbox default`
 该命令下载一个轻量的带docker daemon的linux发布(boot2docker)。
@@ -64,44 +67,3 @@ docker-machine ip default
 docker run busybox echo hello world
 docker run -d -p 8000:80 nginx
 ```
-
-## [配置云主机](https://docs.docker.com/machine/get-started-cloud/)
-
-许多云平台都有驱动插件， 因此你可以用Machine来配置云主机。用machine来配置的话，你就用docker-engine创建一个云主机。
-
-首先要安装运行machine, 同时用云提供商创建一个帐号。
-
-然后提供该供应商帐号验证， 安全密钥，配置选项作为标记给machine，对每个特定的驱动，这些标记都是唯一的。比如通过`--digitalocean-access-token`传一个token给digital ocean。
-
-### [Generic驱动](https://docs.docker.com/machine/drivers/generic/#example)
-
-如果没有直接支持的主机驱动， 或者想引入一个现有的主机给machine来管理， 则generic比较合适，它使用现有主机通过ssh创建machine。
-
-```bash
-docker-machine create \
-  --driver generic \
-  --generic-ip-address=203.0.113.81 \
-  --generic-ssh-key ~/.ssh/id_rsa \
-  --generic-ssh-user ubuntu \
-  --generic-ssh-port 5722 \
-  vm
-```
-
---generic-engine-port: Port to use for Docker Daemon (Note: This flag will not work with boot2docker).
---generic-ip-address: required IP Address of host.
---generic-ssh-key: Path to the SSH user private key.
---generic-ssh-user: SSH username used to connect.
---generic-ssh-port: Port to use for SSH.
-
-### [无驱动引入已有主机](https://docs.docker.com/machine/get-started-cloud/#3rd-party-driver-plugins)
-
-通过传入daemon-url来添加已有的docker主机。
-
-`$ docker-machine create --driver none --url=tcp://50.134.234.20:2376 custombox
-`
-
-<http://dongkui.leanote.com/post/Machine>
-<https://www.tuicool.com/articles/Qv26FjU>
-<https://andyyoung01.github.io/2017/04/30/%E5%B0%86%E4%B8%BB%E6%9C%BA%E7%BA%B3%E5%85%A5Docker-Machine%E7%9A%84%E7%AE%A1%E7%90%86/>
-<http://www.cnblogs.com/sparkdev/p/7066789.html>
-<https://www.upcloud.com/support/get-started-docker-machine/>

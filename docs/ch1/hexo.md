@@ -10,4 +10,3 @@
     npm install -g hexo (npm config set http-proxy=127.0.0.1:8118; npm config set proxy=127.0.0.1:8118)
 
     cd hexo && hexo init . && npm install
-    

@@ -1,10 +1,25 @@
-# gitbook的使用
+# gitbook
+
+## 特性
+
++ 基于nodejs
++ 可以通过book.json文件(平行与项目文档根目录)添加自己的js脚本，[参考](https://github.com/GitbookIO/plugin-scripts)。
++ 不带数据库，全静态
+
+## 优点
+
++ 编写文档简洁，一步到位
++ gitbook提供免费主机，可使用自己的域名
+
+## 缺点
+
++ 没有模板的概念，不合适用于CMS，因此需要后续的jekyll或者hexo等其他工具来补充。
 
 ## gitbook安装
 
 [ref](https://github.com/GitbookIO/gitbook/blob/master/docs/setup.md)
 
-### 使用github库管理gitbook
+## 使用github库管理gitbook
 
 [faq](https://help.gitbook.com/github/can-i-host-on-github.html)
 
@@ -16,26 +31,14 @@
 + domain下检查新的地址
 + domain下增加域名，可用。
 
-### 本地测试gitbook书籍
+## 问题
 
-+ 安装环境，参考[vagrant](ch8/javascript-angular2.md)
-+ 安装gitbook `npm install gitbook-cli -g`
-+ 运行 `$ gitbook init`初始化
-+ `$gitbook serve`启动
-+ `$gitbook build` 建站
-
-### 问题
-
-#### 问题1： 在线的编辑器太慢，下载来的线下编辑器又连不上。
-
-用别的编辑器。同时git设置全局代理。
-
-#### 问题2： 怎么clone到本地
+### 问题1： 怎么clone到本地
 
 对于新创建的book，如果你是第三方登陆的，要在setting里面设置一个密码，然后再git命令行放入用户名/密码
 > `git clone https://nameInProfile:passwordYouJustSet@yourGitAddress`
 
-#### 问题3：怎么使用自己的域名
+### 问题2：怎么使用自己的域名
 
 + 进入设置页面，填写好域名
 + 进入域名注册商，把www变成一个CNAME,把url写入`www.gitbooks.io`
