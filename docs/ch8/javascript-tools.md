@@ -1,5 +1,5 @@
-###webstorm
-######下载，试用运行，license server注册。
+### webstorm
+###### 下载，试用运行，license server注册。
 
 + 作者主页：http://blog.lanyus.com/
 + license server下载地址：

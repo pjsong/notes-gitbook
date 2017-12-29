@@ -1,3 +1,5 @@
+https://johnresig.com/apps/learn/#1
+
 https://egghead.io/lessons/rxjs-rxjs-observables-vs-promises
 
 https://angular-2-training-book.rangle.io/handout/observables/observables_vs_promises.html
