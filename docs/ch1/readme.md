@@ -20,13 +20,20 @@ cd myproject
 yo keystone
 ```
 
-### 其他
-
-<http://apostrophecms.org/>
-
 #### enduro.js
 
 自己宣称， 是一个web开发框架。
+
+##### 部署方式
+
++ 全静态部署， 不需要nodejs
++ nodejs动态部署，有管理功能
++ theme就是一个endurojs项目，
+
+
+### 其他
+
+<http://apostrophecms.org/>
 
 #### hexo
 

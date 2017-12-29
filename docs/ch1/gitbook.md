@@ -43,3 +43,15 @@
 + 进入设置页面，填写好域名
 + 进入域名注册商，把www变成一个CNAME,把url写入`www.gitbooks.io`
 + 如果要用顶级域名，要把顶级域名forward到www,在万网这个要备案。可以不管他，不影响www的访问就行。
+
+### 本地测试
+
+<https://github.com/GitbookIO/gitbook-cli>
+
+```bash
+gitbook help
+gitbook install
+gitbook build
+gitbook serve
+```
+到localhost:4000找自己的网站
