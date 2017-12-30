@@ -1,8 +1,10 @@
+# TypeScript
 
-##TypeScript
-###namespace
+## namespace
+
 + 在global namespace中命令的javascript对象。
-<pre>
+
+```typescript
 interface StringValidator {
     isAcceptable(s: string): boolean;
 }
@@ -111,6 +113,8 @@ for (let s of strings) {
         console.log(""" + s + "" " + (validators[name].isAcceptable(s) ? " matches " : " does not match ") + name);
     }
 }
+```
+
 ###########################################
 `tsc --outFile sample.js Test.ts`
 ###########################################

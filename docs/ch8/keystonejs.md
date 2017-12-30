@@ -1,26 +1,32 @@
-##安装步骤
+# keystone
+
+## 安装步骤
+
 [参考](http://keystonejs.com/getting-started/)
 
-1. `npm config set proxy http://x.x.x.x:y`
-2. `npm config set https_proxy https://x.x.x.x:y`
-3. `sudo npm i -g generator-keystone yo --registry https://registry.npmjs.org`
-4. `yo keystone`, 如果遇到问题,`npm config set registry https://registry.npmjs.org` 
-5. docker运行mongo
-  1. `docker create -v /mongo-data --name mongodata mongo /bin/true`
-  2. `docker run -d --volumes-from mongodata --name mongo-keystone mongo`
-  3. `docker run -d --volumes-from mongodata --name mongo-general-db mongo`
-  4. 开发环境，把端口/服务暴露给主机 
-  5. `docker run -d -p 27017:27017 -p 28017:28017 --volumes-from mongodata --name mongo-keystone --restart unless-stopped mongo mongod --rest --httpinterface`
-  6. `docker exec -it mongo-keystone mongo`进入shell，mongo后面可以跟数据库名。[https://hub.docker.com/_/mongo/](https://hub.docker.com/_/mongo/)
+1.`npm config set proxy http://x.x.x.x:y`
+2.`npm config set https_proxy https://x.x.x.x:y`
+3.`sudo npm i -g generator-keystone yo --registry https://registry.npmjs.org`
+4.`yo keystone`, 如果遇到问题,`npm config set registry https://registry.npmjs.org` 
+5.docker运行mongo
+  1.`docker create -v /mongo-data --name mongodata mongo /bin/true`
+  2.`docker run -d --volumes-from mongodata --name mongo-keystone mongo`
+  3.`docker run -d --volumes-from mongodata --name mongo-general-db mongo`
+  4.开发环境，把端口/服务暴露给主机 
+  5.`docker run -d -p 27017:27017 -p 28017:28017 --volumes-from mongodata --name mongo-keystone --restart unless-stopped mongo mongod --rest --httpinterface`
+  6.`docker exec -it mongo-keystone mongo`进入shell，mongo后面可以跟数据库名。[https://hub.docker.com/_/mongo/](https://hub.docker.com/_/mongo/)
 6. `node keystone`
 
-#####[jade警告的问题](https://github.com/keystonejs/keystone/issues/2610)：
+## 问题
+
+### [jade警告的问题](https://github.com/keystonejs/keystone/issues/2610)：
+
 npm i --save pug, 然后再keystone.init中设置view engine
 
-#####[Cannot find module 'unicode/category/So](https://github.com/dodo/node-slug/issues/58) 
+### [Cannot find module 'unicode/category/So](https://github.com/dodo/node-slug/issues/58) 
+
 + `sudo apt-get install unicode-data` 
 + `npm install unicode`
-
 
 ##项目
 [参考](https://leanpub.com/keystonejs/read)

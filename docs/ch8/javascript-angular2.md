@@ -1,18 +1,28 @@
-# angular2-starter
-[github](https://github.com/pjsong/angular2-starter)
+# angular2+
 
-# 资源
+## 原生app--[nativescript](https://docs.nativescript.org/tutorial/ng-chapter-0)
+
+## 混合app--[ionic](https://ionicframework.com/)
+
+## 服务端预提交--[angular universal](https://universal.angular.io/quickstart/)
+
+## angular2-starter
+
+[webpack](https://github.com/AngularClass/angular2-webpack-starter)
+
+## [cli](https://cli.angular.io/)
+
+## 资源
+
 [angular cn](https://angular.cn/resources/)
 [lesson egghead](https://egghead.io/lessons/angular-2-say-hello-world-to-angular-2)
 [lesson codedamn](http://codedamn.com/videos/angular2/3/)
 [thelgevold](https://github.com/thelgevold/angular-2-samples)
 [syntax-success](http://www.syntaxsuccess.com/angular-2-samples/#/demo/http)
 
-###starter
+### starter
 
 [github angular/quickstart](https://github.com/angular/quickstart/blob/master/README.md)
-
-[github: pjsong/angular2-starter](https://github.com/pjsong/angular2-starter)
 
 [github: angular-university/angular2-for-beginners-starter](https://github.com/angular-university/angular2-for-beginners-starter)
 
