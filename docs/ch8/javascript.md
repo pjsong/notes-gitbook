@@ -2,6 +2,9 @@
 
 [规范](http://www.ecma-international.org/ecma-262/5.1/)
 
+## 语言摘要
+[参考](javascript-mozilla.md)
+
 ## 为什么要学
 
 <https://medium.freecodecamp.org/is-vanilla-javascript-worth-learning-absolutely-c2c67140ac34>
@@ -16,6 +19,7 @@
 [eloquentjavascript](http://eloquentjavascript.net)
 [you dont know js](https://github.com/getify/You-Dont-Know-JS)
 [视频 Javascript: Understanding the Weird Parts](<https://github.com/SOSANA/All-Things-Javascript/tree/master/javascript-Understanding-the-Weird-Parts/section2>)
+[视频笔记](javascript-theweirdparts.md)
 
 ## 资源
 
@@ -121,7 +125,6 @@ JS引擎在执行前或者执行中来编译代码。因此我们要深入理解
 了解lexical scope是我们对closure的探索的是基楚。closure可能是最重要的概念，但如果你没有牢固掌握scope怎样工作，closure可能仍在你能力之外。
 closure的一个重要应用是模块模式。模块模式可能是最流行的代码组织模式，深入理解它至关重要。
 
-
 ### This 指针
 
 函数中的this指针是动态的，指向谁要看函数是如何执行的，而不是函数在哪里定义的。
@@ -143,6 +146,13 @@ obj1.foo();    // "obj1"
 foo.call( obj2 );    // "obj2"
 new foo();    // undefined
 ```
+
+#### 确定this对象的四个原则
+
++ `var bar = new foo()` bar成为一个对象，使用foo作为构子，prototype为object.__prototype__,  prototype使用foo做构子。
++ `var bar = foo.call( obj2 )`使用了apply或者call, 甚至bind显示绑定
++ `var bar = obj1.foo()`，使用了context或者是对象的一个成员(注意不能是定义declaration)。
++ 其他全部是缺省绑定。
 
 #### 其他this [原文](http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/)
 
@@ -225,10 +235,9 @@ var myObject = {
 };
 ```
 
-
-
 ## 原型prototype
 
+[参考](javascript-prototype.md)
 对象创建的时候都会有一个prototype
 
 ```javascript

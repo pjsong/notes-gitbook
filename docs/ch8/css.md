@@ -177,3 +177,38 @@ outline不属于盒子的一部分。outline在margin内部，border之外
 + block： 堆在其他盒子之上，盒子之前和之后的内容显示在分开的行。
 + inline: 与block相反，跟着文档的文本走，内容可以像文本行一样换行，没有width, height设定，margin和border会影响周边文本的位置，不影响周边的block box.
 + inline-block: 介于前面两者之间。顺着文本前边除非空间不够，不产生换行，后面可以用width和height像block一样维护完整性，后面不会产生换行。
+
+### layout
+
+#### [positioning](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning)
+
+##### 文档流
+
+Positioning 可以把元素从一般的文档布局流中拿出来，形成单独的行为。比如，居于其他元素之上，停留在浏览器视窗的固定位置，
+Positioning是一个相当复杂的主题。我们需要首先复习一些布局理论。
+
+首先，单个的元素box通过元素的内容来布局，然后添加padding, border, margin.
+缺省情况， 一个block级别的元素内容，占用父元素100%的宽度，高度与内容一致。inline级别的元素宽度和高度都和父元素一致，不能设置宽度和高度，他们在block级别元素的内容里边。
+如果要设置inline元素有block级别元素的行为，要用display:block.
+
+这是说单个元素， 如果元素之间相互作用呢？ 一般的布局流就是一个元素放到浏览器视窗的系统，缺省情况block级别的垂直向下， 一个元素一行，由margin来设置距离。
+
+inline元素不同， 不显示在新的行， 和别的元素留在同一行，只要父元素还有空间，如果没有空间， 溢出的文本或者元素移到一个新行。
+
+如果相邻的两个元素都设置了margin, 两个margin接触在一起， 大的一个生效，小的那个消失， 这个叫margin collapse.
+
+##### 引入positioning
+
+Positioning的主要思想， 是重载基本文档流的行为，产生有趣的效果。
+
+通过position属性， 元素可以有许多不同的Positioning类型，
+
++ static静态， 元素的缺省类型。
++ relative相对，与静态类似，除了一旦在一般布局中获取到位置后，你还可以修改它最后的位置，比如用top,left,bottom,right属性，可能覆盖页面的其他元素。
++ absolute绝对，
+  + 元素已经从一般布局中提取出来，处在自己的独立层。
+  + 元素的位置改变。absolute中的top,bottom,left,right的行为与之前有所不同。它不是指定元素进来的方向，而是指定他和包含它的容器的距离。
+  + 缺省包含容器是html,元素处在body中。但可以修改这个context,修改下这个元素的某个祖先position为relative。比如把body设为relative, 元素的context就成为body.
+  + 引入z-index. 如果元素重叠了怎么办？上面只有一个absolute的元素，可以直接覆盖在上面，如果有多个呢？根据positon元素出现的顺序，后面的覆盖前面的。如果要改变，就使用z-index，相当于x轴y轴，z指z轴z-aixis.x轴左到右，y上倒下，z里到外。缺省为0
++ fixed固定. 固定类似于absolute，有一点区别是：固定位置是想对于html或者某个祖先，fixed想对于浏览器的视窗。比如nav菜单。
++ 实验阶段的sticky，支持不广泛，属于relative和fixed的混合。允许元素像relative一样，直到滚动到某一个坐标。之后就变成fixed.

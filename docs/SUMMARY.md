@@ -91,6 +91,7 @@
     * [laravel框架](ch8/laravel.md)
   * [django](ch8/django.md)
   * [javascript](ch8/javascript.md)
+    * [javascript-prototype](ch8/javascript-prototype.md)
     * [tools](ch8/javascript-tools.md)
     * [angular2](ch8/javascript-angular2.md)
     * [优化](ch8/optimize.md)
