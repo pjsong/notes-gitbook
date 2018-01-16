@@ -212,3 +212,14 @@ Positioning的主要思想， 是重载基本文档流的行为，产生有趣�
   + 引入z-index. 如果元素重叠了怎么办？上面只有一个absolute的元素，可以直接覆盖在上面，如果有多个呢？根据positon元素出现的顺序，后面的覆盖前面的。如果要改变，就使用z-index，相当于x轴y轴，z指z轴z-aixis.x轴左到右，y上倒下，z里到外。缺省为0
 + fixed固定. 固定类似于absolute，有一点区别是：固定位置是想对于html或者某个祖先，fixed想对于浏览器的视窗。比如nav菜单。
 + 实验阶段的sticky，支持不广泛，属于relative和fixed的混合。允许元素像relative一样，直到滚动到某一个坐标。之后就变成fixed.
+
+## [属性](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference)
+
+### [box-shadow](https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow)
+
+### [transform](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function)
+
++ 坐标系：左上角为原点，右下为x，y坐标方向
++ 一个转换函数由一个二维矩阵表示，由此实现旋转，缩放，变形。组合变形函数从右到左的顺序实现。
++ 平移的变换不是线性的，因此需要两个参数作为向量分别表示。
++ 矩阵变形：
