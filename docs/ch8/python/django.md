@@ -197,7 +197,8 @@ MySQL Connector/Python， oracle提供的纯python驱动，自己包含ORM到驱
 
 #### 安装django
 
-首先安装pip， `pip -V`显示版本。 `pip install -U pip`更新
+首先安装pip， `pip -V`显示版本。 `pip install -U pip`更新,
+出现`permisson denied`, 加上参数， `pip install --user -U pip`安装到用户本地目录而不是系统目录
 安装virtualenv
 
 ```bash
