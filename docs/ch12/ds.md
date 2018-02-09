@@ -1,5 +1,57 @@
 # 数据结构和算法
 
+## [算法分类](https://www.tutorialspoint.com/data_structures_algorithms/divide_and_conquer.htm)
+
+### 贪婪
+
+比如，面值1,7,10的硬币，怎样数量最少组成15
+可能的方法首先用最大的10开始试，得到10+1+1...数量为6
+然后使用7,7+1+1，数量最少.
+
+经典算法包括
+
+1. Travelling Salesman Problem
+2. Prim's Minimal Spanning Tree Algorithm
+3. Kruskal's Minimal Spanning Tree Algorithm
+4. Dijkstra's Minimal Spanning Tree Algorithm
+5. Graph - Map Coloring
+6. Graph - Vertex Cover
+7. Knapsack Problem
+8. Job Scheduling Problem
+
+### 分而治之
+
+1. 打碎/分开
+2. 逐个解决
+3. 合并
+
+经典算法包括：
+
+1. Merge Sort
+2. Quick Sort
+3. Binary Search
+4. Strassen's Matrix Multiplication
+5. Closest pair (points)
+
+### 动态算法
+
+在打碎问题方面和分而治之相似，不同的是，子问题并不能独立解决，这些子问题的解决结果被记下来用于类似或者重复的问题。
+
+主要用于一个问题可以分解成为类似的子问题，使得他们的结果能被重用。在用于优化的算法中，解决当前问题之前，动态算法会检查之前解决的子问题。为了达到最佳方案，合并之前问题的解决结果。
+
+经典算法
+
+1. Fibonacci number series
+2. Knapsack problem
+3. Tower of Hanoi
+4. All pair shortest path by Floyd-Warshall
+5. Shortest path by Dijkstra
+6. Project scheduling
+
+## 参考资源
+
+<http://wangkuiwu.github.io/>
+
 ## 拓扑排序
 
 目标： 将一个有向无环图(Directed Acyclic Graph简称DAG)进行排序进而得到一个有序的线性序列。

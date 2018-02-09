@@ -99,6 +99,7 @@
   * [css](ch8/css.md)
   * [java](ch8/java-summary.md)
     * [java](ch8/java/java.md)
+    * [java-lang](ch8/java/javaio.md)
     * [java security](ch8/java/java-security.md)
     * [spring-guide-security](ch8/java/spring-guide-security.md)
     * [spring-project-oauth](ch8/java/spring-project-oauth.md)
@@ -120,10 +121,17 @@
 * 第十一章 半结构/文本数据库
   * [Nosql](ch11/nosql.md)
     * [MongoDB](ch11/mongodb.md)
+* 第十二章 算法讨论
+  * [DataStructure](ch12/ds.md)
+  * [算法问题](ch12/algorithm.md)
+    * [递归算法](ch12/algorithm/recursive.md)
+    * [油田问题](ch12/algorithm/crudeoil.md)
+    * [遍历最短路径问题](ch12/algorithm/shortest_traverse.md)
+    * [最平均的组合问题](ch12/algorithm/shortestPipe.md)
+    * [三叉树遍历雷电游戏问题](ch12/algorithm/thunder.md)
 * 第 章 测试工具
 * 第 章 监控工具
 * 第 章 常见问题
-  * [DataStructure](ch12/ds.md)
   * WEB
     * [cookie和session](ch99/cookie-session.md)
     * [修身](ch99/lofty)
