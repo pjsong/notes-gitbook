@@ -1,6 +1,7 @@
-## [cas server与spring security 交互](http://docs.spring.io/spring-security/site/docs/current/reference/html/cas.html)
+# [cas server与spring security 交互](http://docs.spring.io/spring-security/site/docs/current/reference/html/cas.html)
 
-### 步骤
+## 步骤
+
 + step1
 
 访问服务程序保护页面, ExceptionTranslationFilter检测到AccessDeniedException或AuthenticationException, 去调用AuthenticationEntryPoint, 如果是cas则调用CasAuthenticationEntryPoint. CasAuthenticationEntryPoint会带上service参数, 告知回调地址.

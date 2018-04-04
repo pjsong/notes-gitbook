@@ -26,14 +26,15 @@
 
 + vagrant box add bento/ubuntu-16.04
 
-
 ## 4. getStarted
-<pre>vagrant init hashicorp/precise64
+
+```bash
+vagrant init hashicorp/precise64
 vagrant up
 vagrant ssh
 vagrant destroy
 # 初始化/开启/ssh登陆/关闭。
-</pre>
+```
 
 + 初始化生成Vagrantfile文件，把指令变成文件内容一部分。这样环境便能启动。
 + box查找[page](https://atlas.hashicorp.com/boxes/search)
@@ -41,19 +42,30 @@ vagrant destroy
 + destroy关闭虚拟机。要清除box `vagrant box list|remove`
 
 ## 安装[参考](https://www.vagrantup.com/docs/installation/)
+
 按照页面下载[页面](https://www.vagrantup.com/downloads.html)/安装。
+
 ## 升级
+
 覆盖安装
+
 ## 卸载
-<pre>rm -rf /opt/vagrant
+
+```bash
+rm -rf /opt/vagrant
 rm -f /usr/bin/vagrant</pre>
+```
+
 删除用户数据目录 `~/.vagrant.d`
 
 ## 用provision安装包/用户等
+
 provision作用是vagrant up时，能自动安装必要的软件用户等环境。
 
 比如在Vagrantfile平行目录下建立文件`bootstrap.sh`
-<pre>#!/usr/bin/env bash
+
+```bash
+#!/usr/bin/env bash
 
 apt-get update
 apt-get install -y apache2
@@ -66,11 +78,11 @@ Vagrant.configure("2") do |config|
   config.vm.box = "hashicorp/precise64"
   config.vm.provision :shell, path: "bootstrap.sh"
 end
-</pre>
+```
 
 Vagrantfile配置后，如果vagrant已经启动，`vagrant reload --provision`加载provision。provision缺省只在vagrant up的时候运行一次。
 
-#####inline方式例子
+##### inline方式例子
 <pre>
 Vagrant.configure(2) do |config|
   config.vm.box = "ubuntu/trusty64"

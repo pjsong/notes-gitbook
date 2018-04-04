@@ -53,8 +53,9 @@
   * [docker-swarm-concept](ch4/docker-swarm-concept.md)
   * [docker-swarm-getstarted](ch4/docker-swarm-getstarted.md)
   * [rabbitmq](ch4/rabbitmq.md)
-* 第五章 注册/登陆/CAS系统
-  * 开源软件
+* 第五章 协议
+  * [oauth2](ch5/protocol/oauth2.md)
+  * 注册/登陆/CAS系统开源软件
     * [apereo](https://github.com/apereo/cas)
       * [官方说明翻译](https://apereo.github.io/cas/development/index.html)
         * [计划](ch5/apereo-planning.md)
@@ -85,6 +86,7 @@
   * coding.net
   * [license说明](ch7/license.md)
 * 第八章 开发语言
+  * [ReactiveX](ch8/reactivex.md)
   * [keystonejs](ch8/keystonejs.md)
   * [php](ch8/php.md)
     * [语言笔记](ch8/lang-php.md)
@@ -97,6 +99,7 @@
     * [typescript](ch8/javascript/typescript.md)
   * [html](ch8/html5.md)
   * [css](ch8/css.md)
+  * [webgl](ch8/webgl.md)
   * [java](ch8/java-summary.md)
     * [java](ch8/java/java.md)
     * [java-lang](ch8/java/javaio.md)
@@ -116,8 +119,11 @@
     * [django](ch8/python/django.md)
   * 第九章 部署工具
   * [chef](ch9/chef.md)
+  * [docker](ch9/docker.md)
 * [第十章 springboot项目](di-shi-zhang-springboot-xiang-mu.md)
-  * [springboot-config-server](/docs/ch10/springboot-config-server)
+  * [springboot-config-server]
+  (/docs/ch10/springboot-config-server)
+  * [云服务12因子](ch10/12factor.md)
 * 第十一章 半结构/文本数据库
   * [Nosql](ch11/nosql.md)
     * [MongoDB](ch11/mongodb.md)
