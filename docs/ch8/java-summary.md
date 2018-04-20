@@ -1,12 +1,14 @@
 # java 目录
 
+## lang
+
+* [random](java-random.md)
+
 ## springboot
 
-* [authorization架构](java/ref-authorization.md)
-* [security架构](java/spring-guide-security.md)
-* [security-oauth2](java/spring-project-oauth.md)
-* [security](java/java-sb-security.md)
-* [random](java/java-random.md)
+* [authorization架构](java/spring-security/ref-authorization.html)
+* [security架构](java/spring-security/spring-guide-security.md)
+* [security-oauth2](java/spring-security/spring-project-oauth.md)
 
 ## spring-cloud
 

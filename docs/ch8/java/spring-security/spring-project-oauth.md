@@ -1,5 +1,95 @@
 # spring-security-oauth
 
+## [OAuth2 Autoconfig](https://docs.spring.io/spring-security-oauth2-boot/docs/current/reference/htmlsingle/)
+
+### maven
+
+```xml
+  <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-security</artifactId>
+  </dependency>
+  <dependency>
+    <groupId>org.springframework.security.oauth.boot</groupId>
+    <artifactId>spring-security-oauth2-autoconfigure</artifactId>
+    <version>2.0.0.RELEASE</version>
+  </dependency>
+```
+
+### Authorization Server
+
++ `@EnableAuthorizationServer`,`security.oauth2.client.client-id` and `security.oauth2.client.client-secret`,加上Inmemory的client repository
++ `$ curl client:secret@localhost:8080/oauth/token -d grant_type=password -d username=user -d password=pwd`此时便可以得到token了
++ 要使用手动配置，定制`AuthorizationServerConfigurer` bean
++ 要手动添加client,使用代码
+
+```java
+@Component
+public class CustomAuthorizationServerConfigurer extends
+    AuthorizationServerConfigurerAdapter {
+    @Override
+    public void configure(
+        ClientDetailsServiceConfigurer clients
+    ) throws Exception {
+        clients.inMemory()
+            .withClient("client")
+                .authorizedGrantTypes("password")
+                .secret("{noop}secret")
+                .scopes("all");
+    }
+}
+```
+
+### Resource Server
+
++ `@EnableResourceServer`，另外的配置选一
+  + 配置`security.oauth2.resource.user-info-uri`使用`/me`资源，比如`https://uaa.run.pivotal.io/userinfo`
+  + 配置`security.oauth2.resource.token-info-uri`使用解码endpoint,比如`https://uaa.run.pivotal.io/check_token`
+  + 如果token是JWT,使用`security.oauth2.resource.jwt.key-value`本地解码，或者用`security.oauth2.resource.jwt.key-uri`获得这个`key-value`如`curl https://uaa.run.pivotal.io/token_key`，或者`security.oauth2.resource.jwk.key-set-uri`能返回JSON Web Keys如`curl https://uaa.run.pivotal.io/token_keys`
+
+### Token type
+
+一般都是缺省`Bearer`， 如果是其他类型用`security.oauth2.resource.token-type`设置
+
+### 定制UserInfo
+
+如果AuthorizationServer用`user-info-uri`,Resource Server内部使用bean`UserInfoRestTemplateFactory`的`OAuth2RestTemplate`拿信息。如果要增加拦截器或者更改认证信息，可以定制`UserInfoRestTemplateCustomizer` bean，也可以定制`UserInfoRestTemplateFactory`
+
+### client
+
++ `@EnableOAuth2Client`会创建`OAuth2ClientContext`，`OAuth2ProtectedResourceDetails`，这两个可以用来创建`OAuth2RestOperations`
+
+```java
+@Bean
+public OAuth2RestTemplate oauth2RestTemplate(OAuth2ClientContext oauth2ClientContext,
+        OAuth2ProtectedResourceDetails details) {
+    return new OAuth2RestTemplate(details, oauth2ClientContext);
+}
+```
+
++ 配置如下，在用`OAuth2RestTemplate`时将向github要授权，如果已经登录，就没有这个过程
+
+```yaml
+security:
+  oauth2:
+    client:
+      clientId: bd1c0a783ccdd1c9b9e4
+      clientSecret: 1a9030fbca47a5b2c28e92f19050bb77824b5ad1
+      accessTokenUri: https://github.com/login/oauth/access_token
+      userAuthorizationUri: https://github.com/login/oauth/authorize
+      clientAuthenticationScheme: form
+```
+
++ `security.oauth2.client.client-authentication-scheme`可以是`header`，或者`form`，看授权服务器设置，`security.oauth2.client.*`属性都绑定在`AuthorizationCodeResourceDetails`实例上
+
++ 非web应用的client
+
+## github programe
+
+### [创建app](https://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/)
+
+
+
 ## 首页例子
 
 [原文](http://projects.spring.io/spring-security-oauth/)
@@ -18,6 +108,10 @@
 ### 总揽
 
 [原文](https://speakerdeck.com/dsyer/data-modelling-and-identity-management-with-oauth2)
+
++ client本质是在user授权之后，代表用户访问其资源。
++ `access-token`可以携带ID之外的信息
++ `resource-server`可自由解析信息
 
 client,关键类`OAuth2ClientContextFileter`,`OAuth2RestTemplate`,`OAuth2ProtectedResource`
 

@@ -42,7 +42,7 @@ OAuth通过引入一个授权层，把百度和张三分离来解决这个问题
 
 ##### Authorization Code授权码
 
-该授权类型间接通过授权服务器来获得。cilent把resource owner指向授权服务器，授权服务器拿到授权码，再把resource owner指回client
+该授权类型间接通过授权服务器来获得。client把resource owner指向授权服务器，授权服务器拿到授权码，再把resource owner指回client
 授权服务器生成授权码之前要认证resource owner, client不能获得resource owner的credential。
 授权服务器返回token不通过浏览器方式，因此不会向外部暴露token。
 

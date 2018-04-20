@@ -11,3 +11,6 @@
 
 cloudbus负责分布式系统中的节点连接到一个message broker，然后发送状态变更，指令广播。
 关键思想是，bus就像scale out后，springboot的一个分布式的actuator,还能用作app之间的通信。唯一的实现就是用AMQP作传输层。
+
+## client
+

@@ -28,8 +28,7 @@
   * [git](ch3/git-command.md)
   * [vagrant](ch3/vagrant.md)
   * virtualbox
-    * \[virtualbox跑
-    * win10\]\(ch3/virtualbox-win10.md\)
+    * [virtualbox跑win10](ch3/virtualbox-win10.md)
     * [virtualbox跑ubuntu](ch3/virtualbox-ubuntu.md)
     * [virtualbox跑android](ch3/virtualbox-android.md)
   * [android studio](ch3/android-studio.md)
@@ -37,6 +36,7 @@
     * [命令行工具](ch3/command-line.md)
     * [dev-tools](ch3/chrome-dev-tools.md)
     * [eclipse-remote-debug](ch3/eclipse-remote-debug.md)
+    * [springboot-devtools](ch3/sb-devtools.md)
     * [windows端口命令](ch3/windows-command.md)
     * [dns常用](ch3/dns)
   * 构建工具
@@ -80,7 +80,7 @@
   * 行政地理/位置信息获取
   * 第三方登录
     * [facebook认证](ch6/facebook.md)
-* 第 章 代码托管
+* 第七章 代码托管
   * [github](ch7/github.md)
   * bitbucket
   * coding.net
@@ -100,17 +100,25 @@
   * [html](ch8/html5.md)
   * [css](ch8/css.md)
   * [webgl](ch8/webgl.md)
-  * [java](ch8/java-summary.md)
-    * [java](ch8/java/java.md)
-    * [java-lang](ch8/java/javaio.md)
-    * [java security](ch8/java/java-security.md)
-    * [spring-guide-security](ch8/java/spring-guide-security.md)
-    * [spring-project-oauth](ch8/java/spring-project-oauth.md)
-    * [spring-project-SAML](ch8/java/spring-project-saml.md)
-    * [spring-cloud-sample](ch8/java/configserver.md)
-    * [pac4j](ch8/java/java-pac4j-sb-security.md)
-    * [springboot](ch8/java/springboot.md)
-    * [java key store](ch5/apereo-overlay-v5.md)
+  * java-world
+    * lang
+      * [java key store](ch5/apereo-overlay-v5.md)
+      * [java](ch8/java/java.md)
+      * [java-lang](ch8/java/javaio.md)
+      * [java-core](ch8/java/core.md)
+    * spring security
+      * [authorization架构](ch8/java/spring-security/ref-authorization.md)
+      * [security架构](ch8/java/spring-security/spring-guide-security.md)
+      * [security-oauth2](ch8/java/spring-security/spring-project-oauth.md)
+      * [spring-guide-security](ch8/java/spring-guide-security.md)
+      * [spring-project-oauth](ch8/java/spring-project-oauth.md)
+      * [spring-project-SAML](ch8/java/spring-project-saml.md)
+      * [pac4j](ch8/java/java-pac4j-sb-security.md)
+    * spring cloud
+      * [spring-cloud-sample](ch8/java/configserver.md)
+      * [zipkin](ch8/java/spring-cloud/zipkin.md)
+      * [springboot](ch8/java/springboot.md)
+      * [springboot-config-server](/ch8/springboot-config-server)
   * [bash](ch8/bash.md)
   * [python](ch8/python-summary.md)
     * [whetting your appetite](ch8/python/tut-appetite.md)
@@ -121,15 +129,16 @@
   * [chef](ch9/chef.md)
   * [docker](ch9/docker.md)
 * [第十章 springboot项目](di-shi-zhang-springboot-xiang-mu.md)
-  * [springboot-config-server]
-  (/docs/ch10/springboot-config-server)
   * [云服务12因子](ch10/12factor.md)
+  * [微服务模式](ch10/microservice-pattern.md)
 * 第十一章 半结构/文本数据库
   * [Nosql](ch11/nosql.md)
     * [MongoDB](ch11/mongodb.md)
 * 第十二章 算法讨论
   * [DataStructure](ch12/ds.md)
+  * [Design pattern](ch12/design-pattern.md)
   * [算法问题](ch12/algorithm.md)
+    * [raft算法](ch12/algorithm/raft.md)
     * [递归算法](ch12/algorithm/recursive.md)
     * [油田问题](ch12/algorithm/crudeoil.md)
     * [遍历最短路径问题](ch12/algorithm/shortest_traverse.md)
@@ -142,4 +151,3 @@
     * [cookie和session](ch99/cookie-session.md)
     * [修身](ch99/lofty)
     * [点子](ch99/idea.md)
-

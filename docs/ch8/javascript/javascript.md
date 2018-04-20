@@ -3,6 +3,7 @@
 [规范](http://www.ecma-international.org/ecma-262/5.1/)
 
 ## 语言摘要
+
 [参考](javascript-mozilla.md)
 
 ## 为什么要学
@@ -252,8 +253,6 @@ bar.a;    // 42 <-- delegated to `foo`
 ```
 
 ## function
-
-
 
 ## 函数表达式
 

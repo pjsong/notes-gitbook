@@ -37,7 +37,7 @@ echo "Total value : $val"
 
 假定`a="abc";b="efg"`
 
-+ `[ $a = $b ]`,`[ $a != $b ]`, `[ -z $a ]`操作数是否空,`[ -n $a ]`操作数是否非空,`[ $a ]`是否空串
++ `[ $a = $b ]`,`[ $a != $b ]`, `[ -z $a ]`操作数是否空,`[ -n $a ]`操作数是否非空,`[ $a ]`是否空串, `[[ "$date" =~ "[0-9]\{8\}" ]]`[正规表达式匹配](https://stackoverflow.com/questions/1891797/capturing-groups-from-a-grep-regex), `postfix=${1##*.}`  will drop begin of string up to last occur of SubStr,
 
 文件操作符
 
@@ -84,6 +84,10 @@ esac
 ```
 
 `./test.sh`, `./test.sh -f index.htm`,`./test.sh -d unix`
+
+#### [Pamameter expansion](http://wiki.bash-hackers.org/syntax/pe#use_a_default_value)
+
++ `:-`
 
 #### while
 
@@ -134,3 +138,8 @@ done
 + 替换文件名中的空格
 
     `find -name "* *" -type f | rename 's/ /_/g'`
+
+## 系统维护
+
++ choose which JRE/JDK to use. `sudo  update-java-alternatives --list`， `sudo  update-java-alternatives --set [JDK/JRE name e.g. java-8-oracle]`
++ configure one java executable at a time`sudo  update-alternatives --config [javac|java|javadoc|etc.]`，`sudo  update-alternatives --config java[Tab]`

@@ -6,9 +6,9 @@ js类型分为基本类型和对象， 对象分为函数对象和一般对象�
 
 函数对象可以作为构子，用new生成新的一般对象。不过， Object，Array, RegExp不用new关键字({}，[], / /)，但String, Number, Boolean都要。
 
-new生成的对象有一个内部引用__proto__，指向构子的prototype, 从那里继承属性和方法。这个内部引用就叫成对象的prototype, 通过Object.getPrototypeOf得到，形成prototype链。
+new生成的对象有一个内部引用__proto__(`getPrototypeOf`)，指向构子函数的prototype(钩子函数的prototype,和对象的`getPrototypeOf方法`指向一个地方), 从那里继承属性和方法。这个内部引用就叫成对象的prototype, 通过Object.getPrototypeOf得到，形成prototype链。prototype就是一个供继承用的对象。 而钩子函数的`getPrototypeOf`指向`Function.prototype`,最后才指向Object.prototype
 
-不管函数对象一般对象，都有constructor属性，这个constructor都从构子的prototype的constructor继承。缺省，只要构子缺省的prototype没有改写，prototype的constructor都指向构子。
+不管函数对象一般对象，都有constructor属性，这个constructor都从构子函数的prototype(`getPrototypeOf`)继承。缺省，只要构子缺省的prototype没有改写，prototype的constructor都指向构子。
 
 所有的函数对象， 其构子一律是Function， 非函数对象，构子函数是创建他的函数。比如Math就是Object
 
