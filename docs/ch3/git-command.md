@@ -269,3 +269,11 @@
 
 + git push origin --tags
 > 推送所有tags到远程。 `git push origin v1.5` 只推送v1.5标签
+
+## 脚本使用
+
++ 获取commit号的方法
+  + `git log -n 1 | head -n 1 | sed -e 's/^commit //' | head -c 8`
+  + `git rev-parse --short=5 HEAD`
+  + `git log --oneline -1 --pretty=format:%h`
+  + `git rev-parse HEAD | cut -c1-5`

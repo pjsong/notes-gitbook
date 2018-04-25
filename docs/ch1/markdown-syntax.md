@@ -3,13 +3,13 @@
 ## [参考2](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 
     tab or four space prefix or backtick quotes `` :
-        
+
     # or =/- is for header
 
     `` backtick quote used for code
 
     > or <blockquote> is for blockquote
-    
+
     ![alt text](/path/to/img.jpg "Title") is for image
 
     *,+,- is for list
@@ -23,20 +23,22 @@
     ------------------------------
 
     <pre> used to retain format </pre>
-    
-# 举例  
-  
-> `>` is block_quote
 
+## 举例
+
+> `>` is block_quote
 
 ` `` if you are to quote`
 
-
 #headers#
 #`#`
+
 ##`##`
+
 ###`###`
+
 ####`####`
+
 #####`#####`
 ######`######`
 
@@ -51,7 +53,6 @@ __Strong__
 _emphasize_
 
 + unsorted list_1 is */+/- followed by single space
-
 
 1. sorted list is number dot followed by single space
 2. sorted list is number dot followed by single space

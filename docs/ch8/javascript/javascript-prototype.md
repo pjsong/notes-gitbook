@@ -12,7 +12,7 @@ new生成的对象有一个内部引用__proto__(`getPrototypeOf`)，指向构�
 
 所有的函数对象， 其构子一律是Function， 非函数对象，构子函数是创建他的函数。比如Math就是Object
 
-每个构子定义的时候都会自动附上prototype属性， 使用对象作为值，这个对象本身又有一个属性constructor指向构子。因此prototype只在函数对象上存在. 如果把构子的prototype设为null, 则构子创建对象.__proto__为Object.__proto__.
+每个构子定义的时候都会自动附上prototype属性， 创建出的对象本身又有一个属性constructor指向构子。因此prototype只在函数对象上存在. 如果把构子的prototype设为null, 则构子创建对象.__proto__为Object.__proto__.
 
 + 函数对象.__proto__ --> Function.__proto__ --> Object.__proto__
 + 简单对象.__proto__ --> Object._prototype__
@@ -20,11 +20,12 @@ new生成的对象有一个内部引用__proto__(`getPrototypeOf`)，指向构�
 
 <https://stackoverflow.com/questions/572897/how-does-javascript-prototype-work>
 
+[prototype vs constructor](https://www.w3schools.com/js/js_object_prototypes.asp)构子函数中规定的对象属性不能再添加，此时可以添加到prototype对象。
+
 ## Object
 
 <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object>
-构子函数，把值打包对象，有length和prototype两个属性
-创建手段有`new Object(); Object.create();{}`
+构子函数，把值打包对象，有length和prototype两个属性。创建手段有`new Object(); Object.create();{}`
 
 ## in vs hasOwnProperty
 
@@ -114,5 +115,5 @@ prototype属性并没有主体的prototype链的信息，只有主题创建的�
 
 Person.prototype对象在函数创建的时候就创建了，尽管函数没有执行，但该对象仍然以函数为构子。因此有两个对象产生， 一个是Person函数本身，另一个prototype对象，在创建对象的时候作为prototype. 此对象是后面创建的对象的prototype链的parent.
 
-[图例1： thief->person](https://i.stack.imgur.com/m5DXc.png)
-[图例2： 关系图1](https://i.stack.imgur.com/2tGyY.jpg)
+！[图例1： thief->person](https://i.stack.imgur.com/m5DXc.png)
+！[图例2： 关系图1](https://i.stack.imgur.com/2tGyY.jpg)

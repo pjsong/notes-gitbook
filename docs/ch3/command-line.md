@@ -2,9 +2,8 @@
 
 + curl -u username:password http://xxx.com/xxx
 
+## linux
 
-
-#linux
 修改作者 `sudo chown -R pjsong/pjsong ./`
 遇到invalid user `sudo chown -R pjsong ./`
 

@@ -1,24 +1,28 @@
 # Gradle
 
-### 为什么用Gradle。 [参考](https://gradle.org/maven_vs_gradle/)
+## 为什么用Gradle。 [参考](https://gradle.org/maven_vs_gradle/)
 
-##Eclipse插件
+### Eclipse插件
+
 + buildship
 + groovy-eclipse [update address](https://github.com/groovy/groovy-eclipse/wiki)
 
 ### groovy 语言
+
 [参考](http://groovy-lang.org/documentation.html)
 
-
 ### Gradle DSL(domain specific language)
-[参考](https://docs.gradle.org/current/dsl/)
-#####Gradle script类型
 
-+ Gradle scripts是Configuration scripts<br>
-+ 三种script类型负责配置三种脚本的delegate object.<br>
+[参考](https://docs.gradle.org/current/dsl/)
+
+### Gradle script类型
+
++ Gradle scripts是Configuration scripts
++ 三种script类型负责配置三种脚本的delegate object.
 + Settings(settings script)， Gradle(init script), Project(build script)
 
-#####Build script
+### Build script
+
 包含statement和script两种block。statement包括方法调用，本地变量定义，属性赋值等，script用closure作为参数调用方法，执行时配置delegate object。顶级script block如下
 
 + allprojects: 项目/每一个子项目
@@ -36,10 +40,8 @@
 + Script: 添加特定的gradle才用的方法。因为编译后的脚本类都有此接口，可以在脚本中使用Script里面的属性/方法。
 + JavaToolChain: 从java代码来构建的工具。
 
+### Gradle构建环境配置
 
-
-
-###Gradle构建环境配置
 有多种方式可以配置执行构建的java进程。本地环境可以通过GRADLE_OPTS或JAVA_OPTS设置之外, 设置JVM内存, Java home, daemon开关等等也很有用。
 
 这个配置文件gradle.properties的应用的顺序是：
@@ -58,8 +60,7 @@
 + org.gradle.workers.max
 + org.gradle.debug 默认监听5005，开启远程调试。与jvm选项`-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005`等价
 
-
-######forked java进程。
+#### forked java进程。
 
 许多设定(java version, maximum heap size)只在新启动jvm才能使用。也就是gradle解析各个gradle.properties之后，必须启动一个分开的jvm进程来执行构建。当用daemon运行，jvm仅启动一次，给各个daemon构建重复用。当没有daemon执行，每个构建执行就必须新启动虚拟机。除非gradle启动的jvm启动脚本恰好参数相同。
 每个build执行启动额外的jvm比较耗资源，因此如果设置org.gradle.java.home 或者gradle.jvmargs的时候，推荐使用[gradle daemon](https://docs.gradle.org/current/userguide/gradle_daemon.html).
@@ -72,9 +73,10 @@ daemon方式：gradle在jvm上运行，并使用许多需要耗费很多时间�
 
 通过jps可以看到进程的状态。
 
-######debug java
+#### debug java
 
 + 在src/main/test中的junit类下，直接可以打断点debug as junit test。
 
-###### debug webapp
+#### debug webapp
+
 + 安装gradle，不用eclipse自带的gradle插件，编辑~/.gradle/gradle.properties下的daemon方式`org.gradle.daemon=true`。开启terminal运行`sudo gradle jettyRunWar`,然后开启远程模式调试即可。可结合参考[remote debug](ch3/eclipse-remote-debug.md)

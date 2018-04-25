@@ -2,16 +2,12 @@
 
 * [前言](README.md)
 * [第一章  静态内容管理](ch1.md)
-  * [1.1 开源软件](ch1/static-content-management.md)
-    * [Jekyll](ch1/jekyll.md)
-    * [gitbook](ch1/gitbook.md)
-    * [keystonejs](ch1/keystonejs.md)
-    * [hexo.io](ch1/hexo.md)
-    * [Roots](ch1/roots.md)
-    * [ghost](ch1/ghost.md)
-  * 1.2 创作工具
-    * [Markdown pad](ch1/markdownpad.md)
-    * [Sublime](ch1/sublime.md)
+  * [Jekyll](ch1/jekyll.md)
+  * [gitbook](ch1/gitbook.md)
+  * [keystonejs](ch1/keystonejs.md)
+  * [hexo.io](ch1/hexo.md)
+  * [Roots](ch1/roots.md)
+  * [ghost](ch1/ghost.md)
   * [Markdown句法](ch1/markdown-syntax.md)
   * [yaml句法](ch1/yaml-syntax.md)
   * [转换工具](ch1/pandoc.md)
@@ -21,8 +17,6 @@
     * 图片/视频文件
     * 网页模板
 * [第二章 内容管理系统CMS](ch2.md)
-  * 开源软件
-    * october
   * [表单资源](ch2/form-test.md)
 * 第三章 开发工具
   * [git](ch3/git-command.md)
@@ -32,6 +26,8 @@
     * [virtualbox跑ubuntu](ch3/virtualbox-ubuntu.md)
     * [virtualbox跑android](ch3/virtualbox-android.md)
   * [android studio](ch3/android-studio.md)
+  * [intellj](ch3/intellj.md)
+  * [js dev tools](ch3/javascript/javascript-tools.md)
   * 调试工具
     * [命令行工具](ch3/command-line.md)
     * [dev-tools](ch3/chrome-dev-tools.md)
@@ -47,12 +43,14 @@
 * 第四章 服务器/中间件软件配置
   * ubuntu
     * [常用指令](ch4/ubuntu-command.md)
+    * [常用指令](ch4/ssh-keygen.md)
   * [nginx](ch4/nginx.md)
   * [docker](ch4/ubuntu-docker.md)
   * [docker-compose](ch4/docker-compose.md)
   * [docker-swarm-concept](ch4/docker-swarm-concept.md)
   * [docker-swarm-getstarted](ch4/docker-swarm-getstarted.md)
   * [rabbitmq](ch4/rabbitmq.md)
+  * [dev/ops](ch4/dev-ops.md)
 * 第五章 协议
   * [oauth2](ch5/protocol/oauth2.md)
   * 注册/登陆/CAS系统开源软件
@@ -92,8 +90,8 @@
     * [语言笔记](ch8/lang-php.md)
     * [laravel框架](ch8/laravel.md)
   * [javascript](ch8/javascript/javascript.md)
+    * [javascript-reactjs](ch8/javascript/javascript-reactjs.md)
     * [javascript-prototype](ch8/javascript/javascript-prototype.md)
-    * [tools](ch8/javascript/javascript-tools.md)
     * [angular2](ch8/javascript/javascript-angular2.md)
     * [优化](ch8/javascript/optimize.md)
     * [typescript](ch8/javascript/typescript.md)
@@ -101,6 +99,7 @@
   * [css](ch8/css.md)
   * [webgl](ch8/webgl.md)
   * java-world
+    * [jvm and GC](ch8/java/jvm.md)
     * lang
       * [java key store](ch5/apereo-overlay-v5.md)
       * [java](ch8/java/java.md)
@@ -119,12 +118,14 @@
       * [zipkin](ch8/java/spring-cloud/zipkin.md)
       * [springboot](ch8/java/springboot.md)
       * [springboot-config-server](/ch8/springboot-config-server)
+    * [groovy scripting](ch8/java/groovy-scripting.md)      
   * [bash](ch8/bash.md)
   * [python](ch8/python-summary.md)
     * [whetting your appetite](ch8/python/tut-appetite.md)
     * [数据结构](ch8/python/tut-datastructure)
     * [datetime](ch8/python/tut-datetime.md)
     * [django](ch8/python/django.md)
+
   * 第九章 部署工具
   * [chef](ch9/chef.md)
   * [docker](ch9/docker.md)

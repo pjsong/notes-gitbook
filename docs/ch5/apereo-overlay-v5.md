@@ -18,6 +18,7 @@ CAS使用spring webflow来驱动登陆的过程，`login-webflow.xml`文件有�
 + groovy方式。 cas的应用context能够装入`deployerConfigContext.groovy`. 一些高级使用场景，CAS bean可以用groovy脚本动态定义。同时这样的定义还能在`deployerConfigContext.xml`中定义。这定义直接从groovy脚本读取，且改动被监视。
 
 ###### 项目结构
+
 <pre>
 ├── src
 │   ├── main
@@ -43,8 +44,8 @@ CAS使用spring webflow来驱动登陆的过程，`login-webflow.xml`文件有�
 │   │   │                           ├── ProtocolParameterAuthority.java
 </pre>
 
-
 ###### 依赖管理
+
 + 每个cas的发布都有自己的依赖，更新cas会自动更新这些依赖。
 + 要项目继承这些依赖，设置parent如下
 >
@@ -54,9 +55,7 @@ CAS使用spring webflow来驱动登陆的过程，`login-webflow.xml`文件有�
     <version>${cas.version}</version>
     </parent>
 
-+ 5.0版本
->  
-    <artifactId>cas-bom</artifactId>
++ 5.0版本`<artifactId>cas-bom</artifactId>`
 
  如果不想用`cas-server-support-bom`作为parent，可以先放上自己的依赖，再用`scope=import`依赖`cas-server-support-bom`
 <pre> 
@@ -78,8 +77,8 @@ CAS使用spring webflow来驱动登陆的过程，`login-webflow.xml`文件有�
 &lt;/dependencyManagement>
 </pre>
 
+#### gradle方式
 
-######gradle方式
 [参考](https://plugins.gradle.org/plugin/io.spring.dependency-management)
 
 
