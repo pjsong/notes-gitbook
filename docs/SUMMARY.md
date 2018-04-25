@@ -148,6 +148,7 @@
 * 第 章 测试工具
 * 第 章 监控工具
 * 第 章 常见问题
+  * [个人情况](ch99/state.md)
   * WEB
     * [cookie和session](ch99/cookie-session.md)
     * [修身](ch99/lofty)
