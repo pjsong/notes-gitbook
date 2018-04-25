@@ -145,6 +145,7 @@
     * [遍历最短路径问题](ch12/algorithm/shortest_traverse.md)
     * [最平均的组合问题](ch12/algorithm/shortestPipe.md)
     * [三叉树遍历雷电游戏问题](ch12/algorithm/thunder.md)
+  * [物联网vantiq](ch12/iot/vantiq.md)
 * 第 章 测试工具
 * 第 章 监控工具
 * 第 章 常见问题
