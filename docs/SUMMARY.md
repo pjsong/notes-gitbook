@@ -20,6 +20,7 @@
   * [表单资源](ch2/form-test.md)
 * 第三章 开发工具
   * [git](ch3/git-command.md)
+  * [curl](ch3/curl-command.md)
   * [vagrant](ch3/vagrant.md)
   * virtualbox
     * [virtualbox跑win10](ch3/virtualbox-win10.md)
