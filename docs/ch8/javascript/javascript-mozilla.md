@@ -2,7 +2,7 @@
 
 ## 内置对象
 
-### array
+### [array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
 
 ```javascript
 var animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
@@ -182,6 +182,51 @@ var object = {
 };
 console.log(f.name); // "f"
 console.log(object.someMethod.name); // "someMethod"
+```
+
+## for loop
+
+[ref](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration)
+
+```javascript
+var arr = [3, 5, 7];
+var arr1 = [...Array(5).keys()];
+[0, 1, 2, 3, 4]
+arr.foo = 'hello';
+for (var i in arr) {
+   console.log(i); // logs "0", "1", "2", "foo"
+}
+for (var i of arr) {
+   console.log(i); // logs 3, 5, 7
+}
+```
+
+### rest和spread操作符`...`
+
+<http://exploringjs.com/es6/ch_parameter-handling.html#sec_spread-operator>
+
++ rest把iterable中剩余的item搜集到Array
+
+```javascript
+function f(x, ...y) {
+    ···
+}
+f('a', 'b', 'c'); // x = 'a'; y = ['b', 'c']
+f(); // x = undefined; y = []
+const [x, ...y] = ['a', 'b', 'c']; // x='a'; y=['b', 'c']
+const [x, y, ...z] = ['a']; // x='a'; y=undefined; z=[]
+const [x, ...[y, z]] = ['a', 'b', 'c'];
+```
+
++ spread把iterable中的参数变成函数调用的参数或者Array的item.
+
+```javascript
+Math.max(-1, 5, 11, 3)
+Math.max(...[-1, 5, 11, 3])
+Math.max(-1, ...[-1, 5, 11], 3)
+const arr1 = ['a', 'b'];
+const arr2 = ['c', 'd'];
+arr1.push(...arr2);
 ```
 
 ## RegExp `/pattern/flags`
