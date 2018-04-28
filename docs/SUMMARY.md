@@ -147,6 +147,7 @@
     * [最平均的组合问题](ch12/algorithm/shortestPipe.md)
     * [三叉树遍历雷电游戏问题](ch12/algorithm/thunder.md)
   * [物联网vantiq](ch12/iot/vantiq.md)
+  * [vantiq-selfintro](ch12/iot/self-intro.md)
 * 第 章 测试工具
 * 第 章 监控工具
 * 第 章 常见问题
