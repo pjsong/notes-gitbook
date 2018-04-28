@@ -1,4 +1,6 @@
-# vantiq
+# vantiq smart sys platform
+
+<https://dev.vantiq.cn/docs/system/index.html#using-the-documentation>
 
 ## 总揽
 
@@ -208,7 +210,7 @@ Vantiq的web平台有两个工作模式： 开发和操作。两个模式都可�
 + 创建数据类型。两个传感器，速度和温度。它们各产生一个数据流并存储在vantiq数据库。
   + `add`->`type`温度传感器SystemTemperature。两个属性`systemId`引擎所在的系统，`temperature`引擎的温度。然后保存类型。
   + 同样方式创建速度类型。
-  + 创建一个总体系统状态类型，关联上面两个类型。`systemId`，`temperature`，`speed`,设置`systemId`为`NaturalKey`, 因为一个id对应一个SystemStatus。NaturalKey设置为唯一索引。
+  + 创建一个总体系统状态类型，关联上面两个类型。`systemId`，`temperature`，`speed`,设置`systemId`为`NaturalKey`, 因为一个id对应一个SystemStatus。NaturalKey设置为唯一索引。另外两个属性`不`设置`required`
   + 同样创建`SystemHUD`system heads up display, 提醒用户引擎温度过高。
 
 ### 用平台`数据生成器`功能模拟数据流
@@ -229,7 +231,113 @@ app处理速度和温度，并合并数据到SystemStatus记录，更新一条Sy
 + 配置LogTemp，loglevel选择info,保存app.
 + 查看LogTemp任务的log信息。`debug`->`live log message`
 
+### overview
+
+<https://dev.vantiq.cn/docs/system/tutorials/tutorial/index.html>
+
+添加第二个事件流。选择 `TempReading`任务矩形，选择`Add Event Stream`。 选择新出现的矩形面板， 命名为`SpeedReading`。
+
+选好`SpeedReading`事件流。点击`Click to Edit link`来输入配置参数。`inboundResource`选`types`,  `inboundResourceId`选`EngineSpeed`。 因为只关心 `EngineTemp`类型的插入，`opt`下拉菜单选INSERT.
+接下来给`SpeedReading`附上另一个LogStream任务`LogSpeed`，也设置log level为info
+`EngineMonitor`面板的右上方的向下箭头保存，然后测试。
+
+现在两个数据流都接收到了，要合并到`SystemStatus`类型。在此之前可以删除测试的logger来清理app.在两个logger上右键删除。
+
+合并的第一步是为app增加一个Merge任务。右键选择`TempReading`->新任务->`activity-pattern=Merge, name=UpdateSystemStatus`->OK.该任务是钻石形状，表示这个`merge`任务是一个决策节点。
+
+右键点击`SpeedReading`->`Link Existing Task`，连接`SpeedReading`到`UpdateSystemStatus`，
+
+选择Merge任务并配置。注意merge任务没有缺省选项。
+关闭它，然后给`UpdateSystemStatus`添加一个`LogStatus`的logger.
+
+保存并测试，任意事件流收到事件，merge和logger都会执行。
+
+#### 输出并更新`SystemStatus`类型
+
+点击并配置`UpdateSystemStatus`，因为我们要保存merge任务，`outboundResource`选`types`, `outboundResourceId`选`SystemStatus`,并选中`upsert`，表示更新已有的`SystemStatus`而不是创建新的记录(如果根据SystemId已经存在记录)。 SystemStatus要求除了systemId之外的字段，不是required字段，否则运行
+报错。
+保存app, 再次运行generator. 菜单`show`->`find records`->`type: SystemStatus`,运行`Query`，可以看到记录。运行`Date Generator`， 不断运行`Query`可以看到数据变化。
+
+#### `ActivityPattern:Transformation`更新 `SystemHUD`
+
+要为模拟引擎更新SystemHUD， 需要对每个SystemStatus记录的更新作出响应。添加一个新的转换任务可以达成。
+右键`UpdateSystemStatus`->`Link New Task`->`ActivityPattern:Transformation,name:UpdateSystemHUD`
+
+选择`UpdateSystemHUD`并配置，有一个必需参数`transformation`，点击链接弹出编辑对话框。
+`UnionName:visualTransformation`->`Add a transformation`->`outboundProperty: systemId,Transformation Expression=event.systemId`
+添加另外一个`transformation`
+
+```json
+{
+    "outboundProperty": "alertMsg",
+    "TransformationExpression":"((event.temperature >= 210) && (event.speed >= 45)) ?
+    \"Your engine is overheating, please reduce your speed.\" :
+    (((event.temperature >= 210) && (event.speed < 45)) ?
+    \"Your engine is overheating: check for a malfunctioning fan or a coolant leak.\" : \"\")
+}
+```
+
+记得`UpdateSystemStatus`任务的输出是一个`SystemStatus`类型，有三个属性。因为`UpdateSystemHUD`任务进跟着`UpdateSystemStatus`任务， 意味着`UpdateSystemHUD`用`SystemStatus`类型关联的属性作为输入。我们给这些属性加上前缀类似于`event.temperature`.
+
+`UpdateSystemHUD`任务的目的是更新`SystemHUD`的记录。这个转换需要计入两个`SystemHUD`类型。`systemId`和`alertMsg`
+设置`systemId`,就是`SystemStatus`类型的`systemId`属性。转换表达式就是`event.systemId`
+
+设置`alertMsg`属性有些复杂。因为要包含基于速度和温度的诊断文本。
+
++ 表达式首先检查`event.speed`和`event.temperature`. 温度高于210,速度大于45,alert信息则包含`您的引擎过热请减速`，温度高于210,如果速度小于45,信息包含`引擎过热，请检查功能故障`，如果两种情况都不存在，显示空信息代表没问题。
+
+保存`SystemHUD`类型中转换任务的输出，`outboundResource:types, outboundResourceId:SystemHUD`.勾上`upsert`。
+
+### `Subscription`运行系统监控
+
+用`modelo subscription`功能查看Vantiq数据库属性的变化，检查处理是否正确。
+`add`->`advanced`->`Subscription`->`new`
+监控数据库`SystemHUD`变化。
+还记得上一节中，当`SystemStatus`更新后，`UpdateSystemHUD`任务会更新引擎系统的`SystemHUD`
+勾上 alertMsg 和 systemId，让SystemHUD更新的时候，结果能显示出来。保存
+
+```json
+{
+    "dataType":"SystemHUD","operation":"update","alertMsg": true, "systemId": true
+}
+```
+
+点击subscription`SystemHUD`打开面板，每次`systemHUD`有更新，面板就会显示消息。
+
+### 可视化运行系统
+
+`add`->`client`->`new client`,用属性改名字为`EngineSimulation`，保存.
+把线型图，柱状图，两个gauge仪表图，饼图，6个标签拖进设计框。
+
+创建数据流喂入数据。几个部件显示温度/速度值，饼图显示`SystemHUD`的警告信息。
+
+点击`数据流`->`新数据流`
+
+```json
+[{"name":"SystemStatus","On Data Changed":true,"datatype":"SystemStatus","update":true,
+
+},{"name":"SystemHUD","On Date Changed":true,"datatype":"SystemHUD","update":true}]
+```
+
+编辑好内容，保存，回到项目
+
+### 运行模拟
+
+数据生成器面板点击`run`，同时在client中点击运行.出现模拟效果。
+
 ## Source 教程
 
 怎样在Vantiq系统使用data source。
 使用了公用的天气种子，获取基于邮编的温度预报。预报数据触发一个规则来保存温度值。温度值可以再和rule中的其他数据合并，来提供温度相关的决策。
+
+### 创建一个source项目
+
+#### 术语
+
++ mqtt, `MQTT-SN`基于非tcp/ip的传感器网络比如zigbee的发布/注册`消息服务`。
++ sms，短信
+
+
+source项目主要负责与外部系统的集成，包括检索，接收。
+这个例子从提供rest服务的`OpenWeatherMap`获取数据。首先定义怎样与外部系统API交互的source. 获取`OpenWeatherMap`数据需要一个免费的apiKey
+

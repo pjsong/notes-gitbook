@@ -24,6 +24,6 @@
 ### 最近主要实践
 
 + reactjs，react native
-+ dev/ops开发环境
++ dev/ops环境研究
 + spring cloud微服务构建
 + 私有项目的开源化整理
