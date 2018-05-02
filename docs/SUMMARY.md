@@ -92,6 +92,7 @@
     * [laravel框架](ch8/laravel.md)
   * [javascript](ch8/javascript/javascript.md)
     * [javascript-reactjs](ch8/javascript/javascript-reactjs.md)
+    * [javascript-reactjs](ch8/javascript/javascript-reactjs-advanced.md)
     * [javascript-prototype](ch8/javascript/javascript-prototype.md)
     * [angular2](ch8/javascript/javascript-angular2.md)
     * [优化](ch8/javascript/optimize.md)
@@ -148,7 +149,8 @@
     * [三叉树遍历雷电游戏问题](ch12/algorithm/thunder.md)
   * [物联网vantiq](ch12/iot/vantiq.md)
   * [vantiq-selfintro](ch12/iot/self-intro.md)
-* 第 章 测试工具
+* 第十三章 github热门
+  * [学习资料索引](ch13/learnhub.md)
 * 第 章 监控工具
 * 第 章 常见问题
   * [个人情况](ch99/state.md)

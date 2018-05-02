@@ -332,12 +332,88 @@ app处理速度和温度，并合并数据到SystemStatus记录，更新一条Sy
 
 ### 创建一个source项目
 
+source项目主要负责与外部系统的集成，包括检索，接收。
+这个例子从提供rest服务的`OpenWeatherMap`获取数据。首先定义怎样与外部系统API交互的source. 获取`OpenWeatherMap`数据需要一个免费的apiKey, <https://home.openweathermap.org/>注册帐号名pjsong, 获得key 6566769a1d5620cb93e74703bd6bb21d
+
++ `add`->`new source`
+
+```json
+{"name": "weather", "type": "remote", "pollingInterval":"15s","content-type":"application/json"}
+```
+
+输入`http://api.openweathermap.org/data/2.5/weather?zip=94549,us&APPID={YourRegisteredAppID}`为uri, 然后点击新增的黄色图片，run也就是`Test Data Receipt`来尝试获取数据。
+获取的数据需要存储到Vantiq数据库，使得可以和其他数据一起触发特定场景的规则。此时需要创建一个数据类型
+
++ `add`->`type`->`new type`, 添加五个属性, location和zipcode必填，保存为`weatherReading`
+
+```json
+{"location": "String",
+"tempF": "Fahrenheit value of the temperature forecast",
+"tempK": "Kelvin value of the temperature forecast",
+"windSpeed": "Kph value of the wind speed forecast",
+"zipCode": "zip code"}
+```
+
++ 做一个数据实例(数据库中的一个entry),定义指定zipcode的数据存放位置。`show`->`add record`
+
+```json
+{"type":"weatherReading", "location": "Concord", "zipCode": "94549", }
+```
+
+保存。
+
++ Rules用于识别添加或者更新到Vantiq数据库的数据，且组织数据准备下一步处理。这里有一个规则，当预报数据收到就会触发。`add`->`rule`->`new rule`
+
+```text
+RULE weatherReading
+WHEN MESSAGE ARRIVES FROM weather
+UPDATE weatherReading(tempK:weather.main.temp) WHERE location == weather.name
+```
+
+这个规则进更新指定位置当前的kelvin温度。返回的数据是JSON格式，因此规则用天气变量作为JSON对象的root来获取数据.`weather.main.temp`是Kelvin的温度预报，`weather.name`是城市位置。勾上active,保存。
+
++ 校验/使用数据
+
+本节展示： 1,校验数据的获取并能够被规则触发来保存，2,保存的数据如何被其他规则使用。
+因为数据是每15s获取一次，那么创建规则后，数据存储的时间也不会超过15s. 用`show`->`find records`->`run`显示查询面板。
+
+看到温度更新，则验证成功
+
+成功之后，这个数据就可以用在其他规则中
+
+```text
+WHEN UPDATE OCCURS ON Customer
+SELECT UNIQUE weatherReading:wr WHERE zipCode EQ Customer.location
+if (wr.tempK >= 300) {
+    UPDATE Offer(offerMessage: "Buy a fan") WHERE (customerId == Customer.id)
+}
+```
+
+只要customer(由Customer类型定义)实例有更新，则规则被触发，比如，当客户进入特定的某个邮编。`SELECT`陈述指示规则根据邮编，找出该处的天气预报(weatherReading类型)
+接下来如果该处的温度超过300k， 则更新与customerID关联的Offer类型
+
+### 结束/删除一个source
+
+结束测试应该`deactivate`或者删除source，避免持续请求。`右键点击source`->`窗口面板右上角toggleKeepAliveOff`->`保存`
+
 #### 术语
 
 + mqtt, `MQTT-SN`基于非tcp/ip的传感器网络比如zigbee的发布/注册`消息服务`。
 + sms，短信
 
+## 分析教程
 
-source项目主要负责与外部系统的集成，包括检索，接收。
-这个例子从提供rest服务的`OpenWeatherMap`获取数据。首先定义怎样与外部系统API交互的source. 获取`OpenWeatherMap`数据需要一个免费的apiKey
+<https://dev.vantiq.cn/docs/system/tutorials/analytics/index.html>
+介绍怎样使用微软的Azure机器学习studio来感性分析
+
+## 介绍
+
+微软的`Azure Machine Learning Studio (MLStudio)` 是一个制作机器学习实验的工作空间。实验可在MLStudio转换为web service, 通过Restful接口查询，来得到预判和归类。
+
+到<https://studio.azureml.net/>去注册一个帐号。现在有免费的10g训练数据和有限几个实验提供给用户。如果不熟悉MLStudio，推荐去看下教程并开始一些样例实验,或者看看实验走廊。在这个教程，我们用一个实验，来做twitter情绪分析<https://gallery.cortanaintelligence.com/Experiment/Predictive-Experiment-for-Twitter-sentiment-analysis-3>
+教程的结尾，可以通过VANTIQ分析Source获得任意twitter情绪，来查询这个实验。
+
+### 设置实验
+
+创建好帐号并登入workspace, 进入<https://gallery.cortanaintelligence.com/Experiment/Predictive-Experiment-for-Twitter-sentiment-analysis-3>, `点击 “Open in Studio”`->`点击弹出窗“Copy experiment to gallery”checkmark` . 待续......
 

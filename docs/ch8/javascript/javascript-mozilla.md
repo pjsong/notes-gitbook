@@ -229,9 +229,9 @@ const arr2 = ['c', 'd'];
 arr1.push(...arr2);
 ```
 
-## RegExp `/pattern/flags`
+### RegExp `/pattern/flags`
 
-### flags
+#### flags
 
 + g 查找所有匹配，不是找到就停止
 + i 忽略大小写
@@ -239,7 +239,7 @@ arr1.push(...arr2);
 + u 把pattern当unicode
 + y 根据表达式的lastIndex属性，从该index开始匹配。
 
-### 三种匹配方式
+#### 三种匹配方式
 
 <https://docs.oracle.com/javase/tutorial/essential/regex/quant.html#difs>
 量词后不再加`？`，`+`，表示greedy, 加`?`表示reluctant, 加`+`表示possessive
@@ -248,7 +248,7 @@ arr1.push(...arr2);
 + X?? reluctant，与greedy相反，从字符串的第一个字符开始，直到整个字符串
 + X?+ possessive，读入整个串，但匹配不后退。
 
-### 构子
+#### 构子
 
 [详细](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp#boundaries)
 
@@ -260,7 +260,7 @@ arr1.push(...arr2);
 + 量词 `?,+,*,{n},{n,},{n,m}`
 + 断言 `x(?=y), x(?!y)`
 
-### 例子
+#### 例子
 
 ```javascript
 var re = /quick\s(brown).+?(jumps)/ig;
@@ -275,4 +275,136 @@ var regex = /foo/g;// regex.lastIndex is at 0
 regex.test('foo'); // true
 // regex.lastIndex is now at 3
 regex.test('foo'); // false
+```
+
+### Set
+
+<https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set>
+
+```javascript
+var mySet = new Set();
+
+mySet.add(1); // Set [ 1 ]
+mySet.add(5); // Set [ 1, 5 ]
+mySet.add(5); // Set [ 1, 5 ]
+mySet.add('some text'); // Set [ 1, 5, 'some text' ]
+var o = {a: 1, b: 2};
+mySet.add(o);
+mySet.add({a: 1, b: 2}); // o is referencing a different object so this is okay
+
+mySet.has(1); // true
+mySet.has(3); // false, 3 has not been added to the set
+mySet.has(5);              // true
+mySet.has(Math.sqrt(25));  // true
+mySet.has('Some Text'.toLowerCase()); // true
+mySet.has(o); // true
+
+mySet.size; // 5
+
+mySet.delete(5); // removes 5 from the set
+mySet.has(5);    // false, 5 has been removed
+
+mySet.size; // 4, we just removed one value
+console.log(mySet);// Set [ 1, "some text", Object {a: 1, b: 2}, Object {a: 1, b: 2} ]
+
+// logs the items in the order: 1, "some text", {"a": 1, "b": 2}, {"a": 1, "b": 2} 
+for (let item of mySet) console.log(item);
+// logs the items in the order: 1, "some text", {"a": 1, "b": 2}, {"a": 1, "b": 2} 
+for (let item of mySet.keys()) console.log(item);
+// logs the items in the order: 1, "some text", {"a": 1, "b": 2}, {"a": 1, "b": 2} 
+for (let item of mySet.values()) console.log(item);
+// logs the items in the order: 1, "some text", {"a": 1, "b": 2}, {"a": 1, "b": 2} 
+//(key and value are the same here)
+for (let [key, value] of mySet.entries()) console.log(key);
+
+// convert Set object to an Array object, with Array.from
+var myArr = Array.from(mySet); // [1, "some text", {"a": 1, "b": 2}, {"a": 1, "b": 2}]
+
+// the following will also work if run in an HTML document
+mySet.add(document.body);
+mySet.has(document.querySelector('body')); // true
+
+// converting between Set and Array
+mySet2 = new Set([1, 2, 3, 4]);
+mySet2.size; // 4
+[...mySet2]; // [1, 2, 3, 4]
+
+// intersect can be simulated via
+var intersection = new Set([...set1].filter(x => set2.has(x)));
+
+// difference can be simulated via
+var difference = new Set([...set1].filter(x => !set2.has(x)));
+
+// Iterate set entries with forEach
+mySet.forEach(function(value) {
+  console.log(value);
+});
+```
+
+### Generator函数
+
+```javascript
+function* generator(i) {
+  yield i;
+  yield i + 10;
+}
+var gen = generator(10);
+console.log(gen.next().value);// expected output: 10
+console.log(gen.next().value);// expected output: 20
+```
+
+`function*` 声明返回一个`GeneratorFunction`对象.另一种构造方式`Object.getPrototypeOf(function*(){}).constructor`
+
+这种函数在再次进入时，能得到上次的上下文也就是变量值。
+Generator对于异步编程是个强有力的工具，特别是与Promise结合使用时，能够减轻回调的压力。异步函数都是采用这种模式。
+
+调用一个generator函数并不会立即执行，而是先返回一个iterator对象。只有iterator.next()执行, generator的函数内容才会执行，直到第一个yield表达式。表达式返回一个值，或者用`yield*`代理给另外一个generator函数。`next()`返回一个对象`{"value":"yieldValue", "done":"isLastYieldedValue"}`.
+如果带参数调用`next(arg)`,则会用`arg`替换掉暂停位置的执行。
+
+`return`执行时，会结束generator.
+错误也会结束执行。除非在内部有`catch`
+如果执行完了再次调用，返回`{value: undefined, done: true}`.
+
+```javascript
+//返回generator函数
+function* anotherGenerator(i) {
+  yield i + 1;
+  yield i + 2;
+  yield i + 3;
+}
+function* generator(i) {
+  yield i;
+  yield* anotherGenerator(i);
+  yield i + 10;
+}
+var gen = generator(10);
+console.log(gen.next().value); // 10
+console.log(gen.next().value); // 11
+console.log(gen.next().value); // 12
+console.log(gen.next().value); // 13
+console.log(gen.next().value); // 20
+
+//传入参数
+function* logGenerator() {
+  console.log(0);
+  console.log(1, yield);
+  console.log(2, yield);
+  console.log(3, yield);
+}
+var gen = logGenerator();
+// the first call of next executes from the start of the function
+// until the first yield statement
+gen.next();             // 0
+gen.next('pretzel');    // 1 pretzel
+gen.next('california'); // 2 california
+gen.next('mayonnaise'); // 3 mayonnaise
+
+//表达式创建
+const foo = function* () {
+  yield 10;
+  yield 20;
+};
+const bar = foo();
+// {value: 10, done: false}
+bar.next();
 ```

@@ -15,7 +15,7 @@
 + `-d, --data <data>` Send specified data in POST request. Details provided below.
 + `-f, --fail` Fail silently (don't output HTML error form if returned).
 + `-F, --form <name=content>` Submit form data.
-+ `-H, --header <header>` Headers to supply with request.
++ `-H, --header <header>` Headers to supply with request`-H "Content-Type: application/x-www-form-urlencoded"`, `-H "Content-Type: application/json"`, `-H “Host:localhost” -H “Content-Type:text/xml”`.
 + `-i, --include` Include HTTP headers in the output.
 + `-I, --head` Fetch headers only.
 + `-k, --insecure` Allow insecure connections to succeed.
@@ -72,7 +72,7 @@
 
 + 代理认证`curl --proxy-user proxyuser:proxypassword curl.haxx.se`
 
-+ 加入referer`curl --referer http://www.example.come http://www.example.com`
++ 加入referer `-e`或者`--referer`， `curl --referer http://www.example.come http://www.example.com`
 
 + 指定浏览器`curl --user-agent "Mozilla/4.73 [en] (X11; U; Linux 2.2.15 i686)" [URL]`
 
@@ -81,3 +81,4 @@
 + 发送cookie`curl --cookie "name=Daniel" http://www.example.com`
 + 通过录制header存储cookie`curl --dump-header headers_and_cookies http://www.example.com`,注意`--cookie-jar`是个更好的保存方法
 + curl内置有cookie解析引擎(--cookie参数启用)，使用先前的cookie重新链接`curl --cookie stored_cookies_in_file http://www.example.com`
++ `curl --header "Host:" http://www.example.com`去掉Header的Host

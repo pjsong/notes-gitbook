@@ -1,5 +1,9 @@
 # [参考](http://daringfireball.net/projects/markdown/syntax#html)
 
+## markdown lint
+
+<https://github.com/DavidAnson/vscode-markdownlint>
+
 ## [参考2](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 
     tab or four space prefix or backtick quotes `` :
@@ -42,7 +46,7 @@
 #####`#####`
 ######`######`
 
-
+## 强调
 
 **Strong**
 

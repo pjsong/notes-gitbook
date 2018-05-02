@@ -56,3 +56,7 @@ gitbook serve
 ```
 
 到localhost:4000找自己的网站
+
+## 参考
+
+<http://www.chengweiyang.cn/gitbook/index.html>
