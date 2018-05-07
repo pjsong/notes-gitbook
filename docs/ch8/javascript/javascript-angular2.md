@@ -13,6 +13,8 @@
 + bundling`ng build --prod` or `ng serve --prod`
 + test`ng test`, `ng e2e`
 
+anguar5升级angular6<https://github.com/ReactiveX/rxjs/blob/master/MIGRATION.md>
+
 ### 环境配置
 
 <https://blog.angulartraining.com/how-to-manage-different-environments-with-angular-cli-883c26e99d15>
@@ -114,6 +116,13 @@ A running Angular application is a tree of components. During change detection A
 #### Template
 
 <https://blog.angular-university.io/angular-ng-template-ng-container-ngtemplateoutlet/>
+
+```text
+<div class="lessons-list" *ngIf="lessons else loading">
+</div>
+<ng-template #loading>
+</ng-template>
+```
 
 ### webpack
 

@@ -40,6 +40,7 @@ windows 下连接主机
 
 ```bash
     db.help();  db.stats(); use dbname; db; show dbs; db.dropDatabase();
+    db.getUsers();
     db.createCollection("collectionName", {capped: true, autoIndexId:true, size:6142800, max: 10000})
     show collections; db.collectionName.drop(); db.collectionName.insert([{"name":"value"},{"name":"anotherValue"}])
     db.collectionName.find({"name", "value"}).pretty();

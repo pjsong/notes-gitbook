@@ -23,3 +23,9 @@ This project lasted more than a year. In April 2016 it showed up in ShangHai Rep
 I'm new to Vantiq, but after days learning, I know that it's a powerful PaaS product, especially fit for IoT industry. it has an uniform platform, namely modelo,  where the users can develop and operate in a single site. In most cases it needs no coding, no integration testing or dev/ops life cycle, just design, and a little integration work. At the same time, Vantiq has to provide customers with more chanllenging feature or capability, like replacing the deployment, or redesigning the user interface, maybe more others. I think I can utillize my front-end and operational skills to help with that.
 
 For me, I'm afraid I was not so good at live oral communications in english, I'd prefer more text based communications like email, or text chatting.
+
+Question: why Vantiq
+Answer: I'll take into three things into account when I looking for job, first the job better offer something new to me so I can learn from it and develop my skillsets.
+second, I could utilize my current skillset, so  produce value. and the third, those who I work with were wonderful execellent people.
+
+Vantiq was a company open for many industries, especially IoT, those industries are new to me. Plus Vantiq System needs some technology background to operate, where I can use my currently available skillsets. and also I knew Caster, and talked with Mr Zhao. I thought they are all excellent persons and who I can learn from.

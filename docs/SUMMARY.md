@@ -94,6 +94,7 @@
     * [javascript-reactjs](ch8/javascript/javascript-reactjs.md)
     * [javascript-reactjs](ch8/javascript/javascript-reactjs-advanced.md)
     * [javascript-prototype](ch8/javascript/javascript-prototype.md)
+    * [javascript-buildins](ch8/javascript/javascript-mozilla.md)
     * [angular2](ch8/javascript/javascript-angular2.md)
     * [优化](ch8/javascript/optimize.md)
     * [typescript](ch8/javascript/typescript.md)

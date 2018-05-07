@@ -1,5 +1,13 @@
 # Docker
 
+## 管理
+
++ `sudo apt-get upgrade docker`, 如果仍然不是最新,需要安装制定版本
++ `apt-cache madison docker-ce`列出版本.
++ 先卸载`sudo apt-get remove docker docker-engine docker.io`
++ `sudo dpkg -i ~/Downloads/docker-ce_xxx`可能失败。原因是非来自官方
+
+
 ## cmd vs entrypoint
 
 + cmd为容器提供缺省命令，entrypoint把容器变成一个可执行的容器。

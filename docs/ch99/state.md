@@ -14,16 +14,24 @@
 
 反而在自由实践的过程中，自己掌握了更多的现代应用开发的必须技能，比如前端开发/devops/脚本语言等。
 
-### 为什么现在要做改变
-
-基于以下新的认识
-
-+ 工作地点上，需要限定在广东省
-+ 个人不能发展出大的项目
-
 ### 最近主要实践
 
 + reactjs，react native
 + dev/ops环境研究
 + spring cloud微服务构建
 + 私有项目的开源化整理
+
+### 工作日报
+
++ 5月6日
+  + vending-ui(http://github.com/pjsong/vending-ui)升级到angular6,主要是rxjs。
+  + vending-ui加入Jenkins自动构建，主动push到dockerhub
++ 5月7日
+  + 升级jenkins和本地开发环境
+  + configserver加入自动构建
+
++ 未来任务
+  + 更新基于jekyll的github主页
+  + Eureka Server加入版本管理和自动构建
+  + 更新基于material-ui的网站主页
+  + oauth2的单页面演示项目，包含oauth2之外的会员认证等全面功能。

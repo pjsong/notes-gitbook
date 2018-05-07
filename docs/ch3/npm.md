@@ -17,3 +17,25 @@
 + `ls-remote`， `install`, `use`,`ls`,`help`
 + 给`use`参数加别名`alias default 8.9.4`,
 + 卸载当前版本之前，需要`deactivate`
+
+## semver
+
++ `>v`greater than v, `^`compatible with v,`~`approximately equivalent,`v1,v2,v3`, `*`or `""`any version,`range1||range2`
+
+```javascript
+{ "dependencies" :
+  { "foo" : "1.0.0 - 2.9999.9999"
+  , "bar" : ">=1.0.2 <2.1.2"
+  , "baz" : ">1.0.2 <=2.3.4"
+  , "boo" : "2.0.1"
+  , "qux" : "<1.0.0 || >=2.3.1 <2.4.5 || >=2.5.2 <3.0.0"
+  , "asd" : "http://asdf.com/asdf.tar.gz"
+  , "til" : "~1.2"
+  , "elf" : "~1.2.3"
+  , "two" : "2.x"
+  , "thr" : "3.3.x"
+  , "lat" : "latest"
+  , "dyl" : "file:../dyl"
+  }
+}
+```

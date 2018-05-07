@@ -3,6 +3,9 @@
 ## 协议
 
 [协议原版https://tools.ietf.org/html/rfc6749](https://tools.ietf.org/html/rfc6749)
+[ppt slideshare.net](https://www.slideshare.net/OrkhanGassymov/secured-rest-microservices-with-spring-cloud)
+
+
 
 ### 引入
 
@@ -27,7 +30,16 @@ OAuth通过引入一个授权层，把百度和张三分离来解决这个问题
 
 授权服务器和资源存放服务器可以是一个应用， 也可以是单个授权服务器，多个资源存放服务器。
 
+协议本身不涉及
++ 怎么认证resource owner
++ 怎么校验token
++ token怎么组织
+
+
+
 #### 协议工作流
+
+简单说来三部曲： `client`向`resource owner`要`grant`，用`grant`向`server`要`token`，用`token`向`resource server`要资源
 
 + client向resource owner请求授权。可以直接向resource owner请求,也可以间接通过授权服务器作为中介。
 + client获得代表授权的credential，。协议有四种授权类型，也可以用扩展的类型。 获得的授权类型取决于client请求授权的方法和认证服务器支持的授权类型。
@@ -38,21 +50,37 @@ OAuth通过引入一个授权层，把百度和张三分离来解决这个问题
 
 步骤1,2推荐的方法，是间接通过授权服务器来向resource owner请求授权。
 
-#### 授权类型
++ AccessToken含有直接访问资源所需要的信息, 有效期短
++ RefreshToken含有获取新token所需要的信息，有效期相对长
++ 为避免校验请求，使用JWTToken，用key检查其签名就行了。
++ Token包含Client信息，User信息
+
+
+#### Grant type授权类型
 
 ##### Authorization Code授权码
 
-该授权类型间接通过授权服务器来获得。client把resource owner指向授权服务器，授权服务器拿到授权码，再把resource owner指回client
-授权服务器生成授权码之前要认证resource owner, client不能获得resource owner的credential。
-授权服务器返回token不通过浏览器方式，因此不会向外部暴露token。
+该授权类型间接通过授权服务器来获得。
+
++ client把resource owner指向授权服务器. 授权服务器要求resource owner登录，并允许client访问resource, 
++ 授权服务器带上授权码把resource owner再指向client,
++ client接着要token,服务器送出2个token
+
+ 这是social app常用的方式。过程中client不能获得resource owner的credential。授权服务器返回token不通过浏览器方式，因此不会向外部暴露token。
 
 ##### Implicit（非明确授权）
 
-该授权主要用于浏览器用js实现的client应用,是一个简化的授权码。
-在这种方式下，在resource owner授权之后，直接发放token，而不是授权码。授权服务器不认证client。有时通过发放access token给client的redirection URI来甄别client。此时token可能暴露给浏览器，或者resource owner.
++ 该授权主要用于浏览器用js实现的client应用,是一个简化的授权码。
++ 在这种方式下，在resource owner授权之后，直接发放token，而不是授权码。
+
+这是SPA常用的方式。
+授权服务器不认证client。有时通过发放access token给client的redirection URI来甄别client。此时token可能暴露给浏览器，或者resource owner.
 这种方式提高了client的响应效率，但是有安全上的弱点。特别是可以用授权码方式的时候。
 
 ##### Resource Owner Password Credentials用户名密码授权
+
++ resource owner向client用户名密码登录
++ client用这个用户名/密码向auth server请求token
 
 这种方式仅当resource owner和client有充分信任的时候才可以用。比如，client是一个设备操作系统的一部分或者高权限应用，且没有其他的授权类型可以用。
 尽管这种方式下client直接访问resource owner的credential,resource owner的credential也只是用于一次请求来交换access token.去掉了client需要存储resource owner credential的必要，随时可以用credential来获得access token或者refresh token。
@@ -60,11 +88,30 @@ OAuth通过引入一个授权层，把百度和张三分离来解决这个问题
 ##### Client Credentials client身份
 
 授权范围是由client控制的资源。也就是client同时充当了resource owner.或者基于先前与授权服务器安排好了的资源。
+这是机器与机器之间的授权。
+
+##### 选择grant type的逻辑
+
+来自参考二的一张ppt图PageNo：41
+
+```javascript
+GrantType getGrantType(){
+  if(accessTokenOwner == 'machine') return 'ClientCredentials'
+  else if(accessTokenOwner == 'resourceOwner'){
+    if(clientType == 'webapp' || (clientType='nativeApp' && thirdPartyClient)) return 'AuthorizationCodeGrant';
+    if(clientType =='nativeApp' || clientType='userAgentBasedApp') && firstPartyClient)
+    return 'PasswordGrant';
+    if(clientType=='userAgentBasedApp' && thirdPartyClient){
+      return 'ImplicitGrant'
+    }
+  };
+}
+
 
 #### Access Token
 
-由resource owner授权，资源服务器和授权服务器来执行。
-可能是一个用于获取授权信息的标志符，也可以自包含授权信息。
++ 由resource owner授权，资源服务器和授权服务器来执行。
++ 可能是一个用于获取授权信息的标志符，也可以自包含授权信息。
 它让token的发放比授权更严格，资源服务器不用考虑认证方法。
 token可以有许多格式和结构。比如[Bearer Token RFC6750](https://tools.ietf.org/html/rfc6750).
 

@@ -2,6 +2,27 @@
 
 ## [OAuth2 Autoconfig](https://docs.spring.io/spring-security-oauth2-boot/docs/current/reference/htmlsingle/)
 
+## github热点
+
+<https://ordina-jworks.github.io/microservices/2017/09/26/Secure-your-architecture-part1.html>
+
+### 关键摘要
++ UAA, `User Authentication Authorization Server`
+  + 依赖`spring-security-oauth2`,`spring-security-jwt`
+  + extends `AuthorizationServerConfigurerAdapter`, 
+    + wire up`AuthenticationManager`,`TokenStore`,`JwtAccessTokenConverter`
+    + configure`ClientDetailServiceConfigurer`,`AuthorizationServerEndpointsConfigurer`,`AuthorizationServerSecurityConfigurer`
+  + extends `WebSecurityConfigurerAdapter`
+    + wire up`AuthenticationManager`,
+    + config`HttpSecurity`,`AuthenticationManagerBuilder`
+
++ Resource Server
+  + extends `ResourceServerConfigAdapter`,
+    + wireup `OAuth2RestTemplate(OAuth2ProtectedResourceDetails)`
+    + config `httpSecurity`
+    + xml config  `security.oauth2.client.(clientId,clientSecret,scope,accessTokenUri,userAuthorizationUri)`, `security.oauth2.resource.jwt.key-uri`
+
+
 ### maven
 
 ```xml

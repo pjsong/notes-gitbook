@@ -12,7 +12,7 @@ daemon能通过三种Socket监听远程API请求：unix,tcp,fd.
 
 如果要远程访问daemon,需要打开tcp socket，缺省安装直接访问daemon,没有加密和认证,最好用https加密socket或者前边放一个安全代理。
 
-你可以用`-H tcp://0.0.0.0:2375`监听所有的网络接口，或者特定的IP网络端口`-H tcp://192.168.59.103:2375`. 一般用2375端口做不加密通信， 2376做加密通信。
+可以用`-H tcp://0.0.0.0:2375`监听所有的网络接口，或者特定的IP网络端口`-H tcp://192.168.59.103:2375`. 一般用2375端口做不加密通信， 2376做加密通信。
 
 如果用https加密socket，注意只支持TLS1.0以上。在基于Systemd的系统， 可以通过Systemd socket activation与daemon通信，用`docker daemon -H fd://`。也可以制定单个socket如`docker daemon -H fd://3`. 如果指定的socket激活文件没找到，Docker将退出。在Docker source tree可以找到用docker和systemd做systemd socket activation例子。
 

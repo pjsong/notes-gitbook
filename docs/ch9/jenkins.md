@@ -26,3 +26,19 @@ job类型
 + Multiconfiguration Job: 也叫“matrix project”，可以在不同环境运行同一个build。比如不同的数据库甚至构建机器
 + Monitor an External Job: 监控非交互的进程，比如定时任务。
 + Maven Project: 能理解pom文件，
+
+## pipeline
+
+<https://jenkins.io/doc/pipeline/steps/>
+<https://github.com/jenkinsci/pipeline-plugin/blob/master/TUTORIAL.md#understanding-flow-scripts>
+<https://antonyderham.me/post/jenkins-docker-pipelines/>
+
+## Jenkinsfile
+<https://jenkins.io/doc/book/pipeline/jenkinsfile/#handling-credentials>
+
+## 使用credential
+
+<https://jenkins.io/doc/book/using/using-credentials/>
+
++ `Credentials > System > Global credentials (unrestricted)`进入default domain
++ 左边有按钮`Add Credentials`
