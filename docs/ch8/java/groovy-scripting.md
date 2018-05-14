@@ -94,10 +94,29 @@ if (4 in list) { ... } //in 操作符
 list.each {
   println it
 }
-
 def even = list.findAll { it % 2 == 0 }//过滤
-
 def squaredList = list.collect { it * it }//类似javascript的map
-
 def upper = ["Hello", "World"].collect { it.toUpperCase() } //句法sugar
 def upper = ["Hello", "World"]*.toUpperCase()
+```
+
+## [Docker install](https://hub.docker.com/_/groovy/)<https://hub.docker.com/_/groovy/>
+
++ `docker run -u root --rm -v "$PWD":/home/groovy/scripts -v groovy-grapes:/home/groovy/.groovy/grapes -w /home/groovy/scripts groovy groovy <script> <script-args>`
+
+## [DSL](http://docs.groovy-lang.org/docs/latest/html/documentation/core-domain-specific-languages.html#_command_chains)
+
+### using maps and Closures
+
+```groovy
+show = { println it }
+square_root = { Math.sqrt(it) }
+def please(action) {
+  [the: { what ->
+    [of: { n -> action(what(n)) }]
+  }]
+}
+// equivalent to: please(show).the(square_root).of(100)
+please show the square_root of 100
+// ==> 10.0
+```

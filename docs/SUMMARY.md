@@ -117,7 +117,7 @@
       * [spring-project-SAML](ch8/java/spring-project-saml.md)
       * [pac4j](ch8/java/java-pac4j-sb-security.md)
     * spring cloud
-      * [spring-cloud-sample](ch8/java/configserver.md)
+      * [spring-cloud-sample](ch8/java/spring-cloud/configserver.md)
       * [zipkin](ch8/java/spring-cloud/zipkin.md)
       * [springboot](ch8/java/springboot.md)
       * [springboot-config-server](/ch8/springboot-config-server)
@@ -128,8 +128,7 @@
     * [数据结构](ch8/python/tut-datastructure)
     * [datetime](ch8/python/tut-datetime.md)
     * [django](ch8/python/django.md)
-
-  * 第九章 部署工具
+* 第九章 部署工具
   * [chef](ch9/chef.md)
   * [docker](ch9/docker.md)
 * [第十章 springboot项目](di-shi-zhang-springboot-xiang-mu.md)

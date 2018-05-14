@@ -1,4 +1,5 @@
 # [参考](http://daringfireball.net/projects/markdown/syntax#html)
+[cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 
 ## markdown lint
 
