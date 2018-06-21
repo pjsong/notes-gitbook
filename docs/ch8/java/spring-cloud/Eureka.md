@@ -25,7 +25,7 @@
 + 服务器一旦开始接受信息，就把自己知道的信息复制给其他结点
 + server一开始，便从其他节点获取实例注册信息。尝试5次`eureka.server.numberRegistrySyncRetries`， 如果不能，则5分钟`eureka.server.getWaitTimeInMsWhenSyncEmpty`之内不让client获取信息。
 + 如果能成功得到所有的实例便设置renewal threshold(85% within 15min),如果低于这个值，就会激活新的模式，此时server不会移除实例，以保护自己的注册信息。这就是self-preservation模式。
-  + 比如一台服务器，两个实例，每个30s发送一次renewal,则总共每分钟发送4次renewal,这个4再加上一个默认数1`eureka.instance.registry.expectedNumberOfRenewsPerMin`，就是5,再乘以`因子eureka.server.renewalPercentThreshold缺省0.85`，然后向上round取整，还是5,如果15分钟内少于5次心跳，则进入self-preservation模式。
+  + 比如一台服务器，两个实例，每个30s发送一次renewal,则总共每分钟发送4次renewal,这个4再加上一个默认数1(设置key为`eureka.instance.registry.expectedNumberOfRenewsPerMin`)，就是5,再乘以`因子eureka.server.renewalPercentThreshold缺省0.85`，然后向上round取整，还是5,如果15分钟(eureka.server.renewalThresholdUpdateIntervalMs)内少于5次心跳，则进入self-preservation模式。
   + 不建议修改client心跳频率`eureka.client.instanceInfoReplicationIntervalSeconds`，要改就改`eureka.server.renewalPercentThreshold`
   + 此模式的道理是：比如AB两个实例，通信良好，但是B跟server的通信不行，此时server不能踢掉B，否则A就拿不到B的注册信息了。
   + 在这种模式下，client要设置timeout并及时转向另外的服务器。
