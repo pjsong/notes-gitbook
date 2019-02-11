@@ -208,7 +208,7 @@ Vantiq的web平台有两个工作模式： 开发和操作。两个模式都可�
 
 + 创建引擎监控项目。 `createNewProject`.
 + 创建数据类型。两个传感器，速度和温度。它们各产生一个数据流并存储在vantiq数据库。
-  + `add`->`type`温度传感器SystemTemperature。两个属性`systemId`引擎所在的系统，`temperature`引擎的温度。然后保存类型。
+  + `add`->`type`温度传感器`SystemTemperature`。两个属性`systemId`引擎所在的系统，`temperature`引擎的温度。然后保存类型。
   + 同样方式创建速度类型。
   + 创建一个总体系统状态类型，关联上面两个类型。`systemId`，`temperature`，`speed`,设置`systemId`为`NaturalKey`, 因为一个id对应一个SystemStatus。NaturalKey设置为唯一索引。另外两个属性`不`设置`required`
   + 同样创建`SystemHUD`system heads up display, 提醒用户引擎温度过高。
@@ -417,3 +417,34 @@ if (wr.tempK >= 300) {
 
 创建好帐号并登入workspace, 进入<https://gallery.cortanaintelligence.com/Experiment/Predictive-Experiment-for-Twitter-sentiment-analysis-3>, `点击 “Open in Studio”`->`点击弹出窗“Copy experiment to gallery”checkmark` . 待续......
 
+### curl 增加source
+<http://vantiq.test.zs.perfect/docs/system/sources/amqp/index.html>
+
+`POST https://dev.vantiq.com/api/v1/resources/sources`
+`curl -u pengjingsong:pengjingsong -X POST -H "Content-Type: application/json" -d '{
+    "name": "rabbitmq1",
+    "type": "AMQP",
+    "direction": "BOTH",
+    "config": {
+        "serverURIs"     : [ "amqp://test.zs.perfect:5672" ],
+        "topics"         : [ "com.perfect99.doms.systemStatus" ],
+        "username"       : "pjsong",
+        "password"       : "perfectdotcoM8",
+        "pollingInterval": 100
+    }
+}' http://vantiq.test.zs.perfect/api/v1/resources/sources/rabbitmq1`
+
+```json
+{ 
+    "name": "rabbitmq",
+    "type": "AMQP",
+    "direction": "BOTH",
+    "config": {
+        "serverURIs"     : [ "amqp://test.zs.perfect:5672" ],
+        "topics"         : [ "com.perfect99.doms.systemStatus" ],
+        "username"       : "pjsong",
+        "password"       : "perfectdotcoM8",
+        "pollingInterval": 100
+    }
+}
+```

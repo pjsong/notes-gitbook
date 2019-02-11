@@ -80,3 +80,4 @@ daemon方式：gradle在jvm上运行，并使用许多需要耗费很多时间�
 #### debug webapp
 
 + 安装gradle，不用eclipse自带的gradle插件，编辑~/.gradle/gradle.properties下的daemon方式`org.gradle.daemon=true`。开启terminal运行`sudo gradle jettyRunWar`,然后开启远程模式调试即可。可结合参考[remote debug](ch3/eclipse-remote-debug.md)
+

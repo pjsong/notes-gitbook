@@ -1,0 +1,1 @@
+http://www.itmuch.com/work/kafka-manager/
