@@ -70,6 +70,8 @@ OAuth通过引入一个授权层，把百度和张三分离来解决这个问题
 
 ##### Implicit（非明确授权）
 
+![implicitAuthor](http://www.bubblecode.net/wp-content/uploads/2013/03/implicit_flow.png)
+
 + 该授权主要用于浏览器用js实现的client应用,是一个简化的授权码。
 + 在这种方式下，在resource owner授权之后，直接发放token，而不是授权码。
 

@@ -7,7 +7,7 @@
 对于同一个文件中的模式，最后的那个生效。
 空行可以作为分隔符。
 
-1.#注释\转义
+1.#注释\转义, 如果patter带有`#`号，用`\`放前边。最后的空格被忽略，除非有转义符。
 2.！重新加入
 
 ## [log]
@@ -67,6 +67,19 @@
 
 > git checkout 0d1d7fc32
 > git checkout -b old-state 0d1d7fc32
+
+#### 放弃修改，回退到index区或者commit区
+
+> git checkout -- file
+
+#### 撤销index区
+
+> git reset HEAD readme
+
+#### 从前的版本来回
+
+> git checkout 2sa332 
+> git reflog
 
 #### 远程
 
@@ -188,6 +201,9 @@
 + merge commit or branch
 > 合并分支的变更到当前分支。用`--no-commit` 来让变更不产生提交。
 
++ merge --no-ff -m "merge with no-ff" dev
+> 合并禁止用fast-forward
+
 + rebase upstream
 > 回滚并在upstream的当前head基础上重新提交。
 
@@ -275,5 +291,5 @@
 + 获取commit号的方法
   + `git log -n 1 | head -n 1 | sed -e 's/^commit //' | head -c 8`
   + `git rev-parse --short=5 HEAD`
-  + `git log --oneline -1 --pretty=format:%h`
+  + `git log --oneline -1 --pretty=format:%h --graph --pretty=oneline --abbrev-commit`
   + `git rev-parse HEAD | cut -c1-5`

@@ -69,7 +69,7 @@ Scripted句法中，一个或者多个node block做全部pipeline的工作。尽
 
 + 通过给Jenkins队列添加工作项，调度block中要运行的steps.只要executor空闲，steps就会运行。
 + 创建一个workspace(pipeline特定的文件夹), 在scm拉下源代码来完成工作。
-+ 注意有些工作空间在一段时间不活跃后，不会自动清除，这点以来与Jenkins的配置。
++ 注意有些工作空间在一段时间不活跃后，不会自动清除，这点依赖于Jenkins的配置。
 
 
 [pipline例子](https://github.com/jenkinsci/pipeline-examples)

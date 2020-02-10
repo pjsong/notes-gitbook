@@ -46,7 +46,9 @@
 
 + `persistent`，`transient`的 messages都可以写入磁盘. 前者在到达时便写入, 后者仅当遇到内存压力才写入。前者也可以在内存中。持久层说的是存储两种类型的机制。
 
-+ 持久层有2个组件，一个是队列索引负责维护队列中消息的位置，是否交付或者应答。每个队列都有索引。一个是消息store,为所有的队列共享。消息直接存储在索引或者消息store. store技术上分为persistent和transiant.
++ 持久层有2个组件，
+ * 一个是队列索引负责维护队列中消息的位置，是否交付或者应答。每个队列都有索引。
+ * 一个是消息store,为所有的队列共享。消息直接存储在索引或者消息store. store技术上分为persistent和transiant.
 
 ## [开始](https://www.rabbitmq.com/getstarted.html)
 
