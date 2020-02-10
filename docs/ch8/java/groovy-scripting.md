@@ -2,10 +2,14 @@
 
 <https://www.timroes.de/2015/06/28/groovy-tutorial-for-java-developers-part2-closures/>
 
-## 基本解释
+## [基本解释](http://www.oracle.com/technetwork/articles/java/groovy-1695411.html)
 
 `println "Hello World"`
 
++ 类里边的方法缺省`public`
++ 自动包含成员的`get/set`方法。
++ getName方法可以在`“”`内部用`$name`调用，`setName`可以用`.`调用
++ 方法类型信息可选，方法必须用`def`，
 + println是个`System.out.prinln`快捷键
 + 没有分号
 + 如果能检测后面是参数，方法调用可以忽略括号

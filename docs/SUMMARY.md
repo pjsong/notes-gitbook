@@ -108,6 +108,8 @@
       * [java](ch8/java/java.md)
       * [java-lang](ch8/java/javaio.md)
       * [java-core](ch8/java/core.md)
+    * spring framework
+      * [Ioc](ch8/java/spring-framework/spring-framework-core.md)  
     * spring security
       * [authorization架构](ch8/java/spring-security/ref-authorization.md)
       * [security架构](ch8/java/spring-security/spring-guide-security.md)
@@ -131,6 +133,7 @@
 * 第九章 部署工具
   * [chef](ch9/chef.md)
   * [docker](ch9/docker.md)
+  * [canary testing](ch9/canarytesting.md)
 * [第十章 springboot项目](di-shi-zhang-springboot-xiang-mu.md)
   * [云服务12因子](ch10/12factor.md)
   * [微服务模式](ch10/microservice-pattern.md)

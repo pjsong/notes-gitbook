@@ -6,6 +6,7 @@
 
 [securing web](https://spring.io/guides/gs/securing-web/)
 [github](https://github.com/spring-guides/gs-securing-web)
+[security 5.0 ref](https://docs.spring.io/spring-security/site/docs/5.0.0.RELEASE/reference/htmlsingle/#jc-webflux)
 
 ### 说明
 

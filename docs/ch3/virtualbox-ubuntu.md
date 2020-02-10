@@ -60,11 +60,11 @@ windows下需要安装，linux/osx只要Hardware device debugging就够了
 
 ###1.3 spring环境
 1. 安装[sdkman](http://sdkman.io/install.html)
-> `curl -s "https://get.sdkman.io" | bash`
 
-> source "$HOME/.sdkman/bin/sdkman-init.sh" 
-
-> sdk version
++ `curl -s "https://get.sdkman.io" | bash`
++ `source "$HOME/.sdkman/bin/sdkman-init.sh" `
++ `sdk version`
++ `sdk selfupdate force`
 
 2. 安装spring-boot_cli
 > sdk install springboot

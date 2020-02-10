@@ -4,7 +4,7 @@
 
 [协议原版https://tools.ietf.org/html/rfc6749](https://tools.ietf.org/html/rfc6749)
 [ppt slideshare.net](https://www.slideshare.net/OrkhanGassymov/secured-rest-microservices-with-spring-cloud)
-
+[auth0.com](https://auth0.com/docs/api-auth/tutorials/client-credentials)
 
 
 ### 引入
@@ -90,12 +90,31 @@ OAuth通过引入一个授权层，把百度和张三分离来解决这个问题
 授权范围是由client控制的资源。也就是client同时充当了resource owner.或者基于先前与授权服务器安排好了的资源。
 这是机器与机器之间的授权。
 
+```bash
+curl --request POST \
+  --url 'https://YOUR_AUTH0_DOMAIN/oauth/token' \
+  --header 'content-type: application/json' \
+  --data '{"grant_type":"client_credentials","client_id": "YOUR_CLIENT_ID","client_secret": "YOUR_CLIENT_SECRET","audience": "YOUR_API_IDENTIFIER"}'
+```
+
+返回
+
+```json
+{
+  "access_token":"eyJz93a...k4laUWw",
+  "token_type":"Bearer",
+  "expires_in":86400
+}
+
+获取token: `POST https://api.authorization-server.com/token   grant_type=client_credentials&    client_id=CLIENT_ID&client_secret=CLIENT_SECRET`
+发送请求： `curl -H "Authorization: Bearer RsT5OjbzRn430zqMLgV3Ia" https://api.authorization-server.com/1/me`
+
 ##### 选择grant type的逻辑
 
 来自参考二的一张ppt图PageNo：41
 
 ```javascript
-GrantType getGrantType(){
+function getGrantType(){
   if(accessTokenOwner == 'machine') return 'ClientCredentials'
   else if(accessTokenOwner == 'resourceOwner'){
     if(clientType == 'webapp' || (clientType='nativeApp' && thirdPartyClient)) return 'AuthorizationCodeGrant';
@@ -106,7 +125,7 @@ GrantType getGrantType(){
     }
   };
 }
-
+```
 
 #### Access Token
 

@@ -75,6 +75,7 @@ public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception 
 ```
 
 + `Authentication`是通过`Authentication`对象和`AuthenticationManager`以及`AuthenticationProvider`互相合作来实现的。而授权则是通过`GrantedAuthority`、`AccessDecisionManager`和`AccessDecisionVoter`等互相合作来实现的。
++ `AuthenticationManager`是接口，做事的是`providerManager`,后者又逐个遍历`AuthenticationProvider`,每个`AuthenticationProvider`要不抛异常，要不返回`Authentication`，看谁能返回。校验认证请求一般就是装入`UserDetails`并对比密码，比如`daoAuthenticationProvider`.装入的`UserDetails`和`GrantedAuthority`用来构建`Authentication`,并存入`SecurityContext`.
 
 + 定制`userDetailService`. [baeldung](http://www.baeldung.com/spring-security-authentication-with-a-database)
 
