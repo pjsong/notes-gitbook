@@ -67,7 +67,7 @@ explain partitions select * from foo_range where created = '2016-10-20';
 
 * 单个磁盘页的行数越多，查询和索引的查找越快，buffer池所需要的cache越少，IO也用的更少。
 * 表中的数据分割成页，页组织在一个B树索引中。表数据和二级索引都用这种结构。
-* 代表整张表的B树索引就是索引簇，根据主键列来组织。
+* 代表整张表的B树索引就是索引簇clustered index，根据主键列来组织。
 * 索引数据的节点，clustered index包含了所有的列；secondaryindex包含了索引列和主键。
 * 可变长度的列如`BLOB`，`VARCHAR`, 如果太长，将存储在另外分配的overflow页。这种列叫off-page页。
 
